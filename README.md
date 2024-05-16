@@ -32,8 +32,40 @@ python -m pip install mbrl==v0.1.4
 
 If you want to utilize gpu for your training, you should install tf-gpu and torch cuda instead.
 
+### Init usage
+Given that you are located at the `init` branch, here is how you can run the project in VScode devcontainers:
+1. Open folder using VScode devcontainers. It should work out of the box wihhout a need for any additional setup.
+2. Open terminal `#0` and run the following commands:
+```shell
+cd catkin_ws
+source /opt/ros/noetic/setup.bash
+catkin_make
 
-### Usage
+source devel/setup.bash
+catkin_make
+```
+3. In terminal `#1`, run the following commands:
+```shell
+cd catkin_ws
+source devel/setup.bash
+roscore
+```
+4. In terminal `#2`, run the following commands:
+```shell
+cd catkin_ws
+source devel/setup.bash
+rosrun brsl Turtlebot_environment.py
+```
+5. In terminal `#3`, run the following commands:
+```shell
+cd catkin_ws
+source devel/setup.bash
+roslaunch brsl turtlebot.launch
+```
+
+TODO: IDK what to do next, it crashes, and should be fixed.
+
+### Old Usage
 To run the agents, first, make a catkin_ws.
 ```
 cd

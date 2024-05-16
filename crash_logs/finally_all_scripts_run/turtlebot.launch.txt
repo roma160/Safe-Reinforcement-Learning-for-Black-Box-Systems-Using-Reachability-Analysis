@@ -1,0 +1,432 @@
+root@2b5e05e0812a:/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis# cd catkin_ws/
+root@2b5e05e0812a:/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws# source devel/setup.bash
+root@2b5e05e0812a:/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws# roslaunch brsl turtlebot.launch
+... logging to /root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://2b5e05e0812a:43285/
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rosdistro: noetic
+ * /rosversion: 1.16.0
+
+NODES
+  /
+    Turtlebot_BRSL (brsl/Turtlebot_brsl.py)
+    environment (brsl/Turtlebot_environment.py)
+
+ROS_MASTER_URI=http://localhost:11311
+
+process[environment-1]: started with pid [15006]
+RLException: Unable to launch [Turtlebot_BRSL-2]. 
+If it is a script, you may be missing a '#!' declaration at the top.
+The traceback for the exception was written to the log file
+[Turtlebot_BRSL-2] killing on exit
+[environment-1] killing on exit
+Traceback (most recent call last):
+  File "/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_environment.py", line 3, in <module>
+    import rospy
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/__init__.py", line 47, in <module>
+    from std_msgs.msg import Header
+  File "/opt/ros/noetic/lib/python3/dist-packages/std_msgs/msg/__init__.py", line 1, in <module>
+    from ._Bool import *
+  File "/opt/ros/noetic/lib/python3/dist-packages/std_msgs/msg/_Bool.py", line 6, in <module>
+    import genpy
+  File "/opt/ros/noetic/lib/python3/dist-packages/genpy/__init__.py", line 34, in <module>
+    from . message import Message, SerializationError, DeserializationError, MessageException, struct_I
+  File "/opt/ros/noetic/lib/python3/dist-packages/genpy/message.py", line 46, in <module>
+    import genmsg
+  File "/opt/ros/noetic/lib/python3/dist-packages/genmsg/__init__.py", line 33, in <module>
+    from . base import MSG_DIR, SRV_DIR, EXT_MSG, EXT_SRV, SEP, log, plog, InvalidMsgSpec, log_verbose, MsgGenerationException
+  File "/opt/ros/noetic/lib/python3/dist-packages/genmsg/base.py", line 52, in <module>
+    import inspect, pprint
+  File "/usr/lib/python3.8/inspect.py", line 40, in <module>
+    import linecache
+  File "/usr/lib/python3.8/linecache.py", line 11, in <module>
+    import tokenize
+  File "/usr/lib/python3.8/tokenize.py", line 32, in <module>
+    import re
+  File "/usr/lib/python3.8/re.py", line 125, in <module>
+    import sre_compile
+  File "/usr/lib/python3.8/sre_compile.py", line 14, in <module>
+    import sre_parse
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 914, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1407, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1379, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1506, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 142, in _path_stat
+KeyboardInterrupt
+root@2b5e05e0812a:/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws# cat /root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log
+[roslaunch][INFO] 2024-05-16 22:29:42,976: Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+[roslaunch][INFO] 2024-05-16 22:29:43,008: Done checking log file disk usage. Usage is <1GB.
+[roslaunch][INFO] 2024-05-16 22:29:43,008: roslaunch starting with args ['/opt/ros/noetic/bin/roslaunch', 'brsl', 'turtlebot.launch']
+[roslaunch][INFO] 2024-05-16 22:29:43,008: roslaunch env is environ({'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log'})
+[roslaunch][INFO] 2024-05-16 22:29:43,008: starting in server mode
+[roslaunch.parent][INFO] 2024-05-16 22:29:43,008: starting roslaunch parent run
+[roslaunch][INFO] 2024-05-16 22:29:43,009: loading roscore config file /opt/ros/noetic/etc/ros/roscore.xml
+[roslaunch][INFO] 2024-05-16 22:29:43,424: Added core node of type [rosout/rosout] in namespace [/]
+[roslaunch.config][INFO] 2024-05-16 22:29:43,424: loading config file /workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/launch/turtlebot.launch
+[roslaunch][INFO] 2024-05-16 22:29:43,427: Added node of type [brsl/Turtlebot_environment.py] in namespace [/]
+[roslaunch][INFO] 2024-05-16 22:29:43,427: Added node of type [brsl/Turtlebot_brsl.py] in namespace [/]
+[roslaunch][INFO] 2024-05-16 22:29:43,427: ... selected machine [] for node of type [brsl/Turtlebot_environment.py]
+[roslaunch][INFO] 2024-05-16 22:29:43,427: ... selected machine [] for node of type [brsl/Turtlebot_brsl.py]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,430: start_process_monitor: creating ProcessMonitor
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,430: created process monitor <ProcessMonitor(ProcessMonitor-1, initial daemon)>
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,430: start_process_monitor: ProcessMonitor started
+[roslaunch.parent][INFO] 2024-05-16 22:29:43,430: starting parent XML-RPC server
+[roslaunch.server][INFO] 2024-05-16 22:29:43,431: starting roslaunch XML-RPC server
+[roslaunch.server][INFO] 2024-05-16 22:29:43,431: waiting for roslaunch XML-RPC server to initialize
+[xmlrpc][INFO] 2024-05-16 22:29:43,431: XML-RPC server binding to 0.0.0.0:0
+[xmlrpc][INFO] 2024-05-16 22:29:43,431: Started XML-RPC server [http://2b5e05e0812a:43285/]
+[xmlrpc][INFO] 2024-05-16 22:29:43,431: xml rpc node: starting XML-RPC server
+[roslaunch][INFO] 2024-05-16 22:29:43,443: started roslaunch server http://2b5e05e0812a:43285/
+[roslaunch.parent][INFO] 2024-05-16 22:29:43,443: ... parent XML-RPC server started
+[roslaunch][INFO] 2024-05-16 22:29:43,443: master.is_running[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:29:43,444: master.is_running[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:29:43,448: ROS_MASTER_URI=http://localhost:11311
+[roslaunch][INFO] 2024-05-16 22:29:43,450: setting /roslaunch/uris/host_2b5e05e0812a__43285' to http://2b5e05e0812a:43285/
+[roslaunch][INFO] 2024-05-16 22:29:43,452: load_parameters starting ...
+[roslaunch][INFO] 2024-05-16 22:29:43,455: ... load_parameters complete
+[roslaunch][INFO] 2024-05-16 22:29:43,455: launch_nodes: launching local nodes ...
+[roslaunch][INFO] 2024-05-16 22:29:43,456: ... preparing to launch node of type [brsl/Turtlebot_environment.py]
+[roslaunch][INFO] 2024-05-16 22:29:43,456: create_node_process: package[brsl] type[Turtlebot_environment.py] machine[Machine(name[] env_loader[None] address[localhost] ssh_port[22] user[None] assignable[True] timeout[10.0])] master_uri[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:29:43,456: process[environment-1]: env[{'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log'}]
+[roslaunch][INFO] 2024-05-16 22:29:43,624: process[environment-1]: args[['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_environment.py', '__name:=environment']]
+[roslaunch][INFO] 2024-05-16 22:29:43,625: ... created process [environment-1]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,625: ProcessMonitor.register[environment-1]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,625: ProcessMonitor.register[environment-1] complete
+[roslaunch][INFO] 2024-05-16 22:29:43,625: ... registered process [environment-1]
+[roslaunch][INFO] 2024-05-16 22:29:43,625: process[environment-1]: starting os process
+[roslaunch][INFO] 2024-05-16 22:29:43,625: process[environment-1]: start w/ args [['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_environment.py', '__name:=environment', '__log:=/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/environment-1.log']]
+[roslaunch][INFO] 2024-05-16 22:29:43,625: process[environment-1]: cwd will be [/root/.ros]
+[roslaunch][INFO] 2024-05-16 22:29:43,629: process[environment-1]: started with pid [15006]
+[roslaunch][INFO] 2024-05-16 22:29:43,629: ... successfully launched [environment-1]
+[roslaunch][INFO] 2024-05-16 22:29:43,629: ... preparing to launch node of type [brsl/Turtlebot_brsl.py]
+[roslaunch][INFO] 2024-05-16 22:29:43,629: create_node_process: package[brsl] type[Turtlebot_brsl.py] machine[Machine(name[] env_loader[None] address[localhost] ssh_port[22] user[None] assignable[True] timeout[10.0])] master_uri[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:29:43,630: process[Turtlebot_BRSL-2]: env[{'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log'}]
+[roslaunch][INFO] 2024-05-16 22:29:43,763: process[Turtlebot_BRSL-2]: args[['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py', '__name:=Turtlebot_BRSL']]
+[roslaunch][INFO] 2024-05-16 22:29:43,763: ... created process [Turtlebot_BRSL-2]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,763: ProcessMonitor.register[Turtlebot_BRSL-2]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,763: ProcessMonitor.register[Turtlebot_BRSL-2] complete
+[roslaunch][INFO] 2024-05-16 22:29:43,763: ... registered process [Turtlebot_BRSL-2]
+[roslaunch][INFO] 2024-05-16 22:29:43,763: process[Turtlebot_BRSL-2]: starting os process
+[roslaunch][INFO] 2024-05-16 22:29:43,763: process[Turtlebot_BRSL-2]: start w/ args [['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py', '__name:=Turtlebot_BRSL', '__log:=/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/Turtlebot_BRSL-2.log']]
+[roslaunch][INFO] 2024-05-16 22:29:43,763: process[Turtlebot_BRSL-2]: cwd will be [/root/.ros]
+[roslaunch][ERROR] 2024-05-16 22:29:43,767: OSError(8, Exec format error)
+[roslaunch][ERROR] 2024-05-16 22:29:43,768: RLException: Unable to launch [Turtlebot_BRSL-2]. 
+If it is a script, you may be missing a '#!' declaration at the top.
+[roslaunch][ERROR] 2024-05-16 22:29:43,768: The traceback for the exception was written to the log file
+[roslaunch][ERROR] 2024-05-16 22:29:43,770: Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/nodeprocess.py", line 340, in start
+    self.popen = subprocess.Popen(self.args, cwd=cwd, stdout=logfileout, stderr=logfileerr, env=full_env, close_fds=close_file_descriptor, preexec_fn=preexec_function)
+  File "/usr/lib/python3.8/subprocess.py", line 858, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.8/subprocess.py", line 1704, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+OSError: [Errno 8] Exec format error: '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/__init__.py", line 347, in main
+    p.start()
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/parent.py", line 316, in start
+    self.runner.launch()
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/launch.py", line 677, in launch
+    succeeded, failed = self._launch_nodes()
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/launch.py", line 383, in _launch_nodes
+    proc, success = self.launch_node(node)
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/launch.py", line 576, in launch_node
+    success = process.start()
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/nodeprocess.py", line 345, in start
+    raise FatalProcessLaunch("Unable to launch [%s]. \nIf it is a script, you may be missing a '#!' declaration at the top."%self.name)
+roslaunch.pmon.FatalProcessLaunch: Unable to launch [Turtlebot_BRSL-2]. 
+If it is a script, you may be missing a '#!' declaration at the top.
+
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,771: ProcessMonitor.shutdown <ProcessMonitor(ProcessMonitor-1, started daemon 139966759618304)>
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,831: ProcessMonitor._post_run <ProcessMonitor(ProcessMonitor-1, started daemon 139966759618304)>
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,832: ProcessMonitor._post_run <ProcessMonitor(ProcessMonitor-1, started daemon 139966759618304)>: remaining procs are [<roslaunch.nodeprocess.LocalProcess object at 0x7f4c87fabd90>, <roslaunch.nodeprocess.LocalProcess object at 0x7f4c9d0a0880>]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,832: ProcessMonitor exit: killing Turtlebot_BRSL-2
+[roslaunch][INFO] 2024-05-16 22:29:43,832: [Turtlebot_BRSL-2] killing on exit
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,833: ProcessMonitor exit: killing environment-1
+[roslaunch][INFO] 2024-05-16 22:29:43,833: [environment-1] killing on exit
+[roslaunch][INFO] 2024-05-16 22:29:43,834: process[environment-1]: killing os process with pid[15006] pgid[15006]
+[roslaunch][INFO] 2024-05-16 22:29:43,834: [environment-1] sending SIGINT to pgid [15006]
+[roslaunch][INFO] 2024-05-16 22:29:43,834: [environment-1] sent SIGINT to pgid [15006]
+[roslaunch][INFO] 2024-05-16 22:29:43,935: process[environment-1]: SIGINT killed with return value -2
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,935: ProcessMonitor exit: cleaning up data structures and signals
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,935: ProcessMonitor exit: pmon has shutdown
+[rospy.core][INFO] 2024-05-16 22:29:43,935: signal_shutdown [atexit]
+root@2b5e05e0812a:/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws# cat /root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log
+[roslaunch][INFO] 2024-05-16 22:29:42,976: Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+[roslaunch][INFO] 2024-05-16 22:29:43,008: Done checking log file disk usage. Usage is <1GB.
+[roslaunch][INFO] 2024-05-16 22:29:43,008: roslaunch starting with args ['/opt/ros/noetic/bin/roslaunch', 'brsl', 'turtlebot.launch']
+[roslaunch][INFO] 2024-05-16 22:29:43,008: roslaunch env is environ({'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log'})
+[roslaunch][INFO] 2024-05-16 22:29:43,008: starting in server mode
+[roslaunch.parent][INFO] 2024-05-16 22:29:43,008: starting roslaunch parent run
+[roslaunch][INFO] 2024-05-16 22:29:43,009: loading roscore config file /opt/ros/noetic/etc/ros/roscore.xml
+[roslaunch][INFO] 2024-05-16 22:29:43,424: Added core node of type [rosout/rosout] in namespace [/]
+[roslaunch.config][INFO] 2024-05-16 22:29:43,424: loading config file /workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/launch/turtlebot.launch
+[roslaunch][INFO] 2024-05-16 22:29:43,427: Added node of type [brsl/Turtlebot_environment.py] in namespace [/]
+[roslaunch][INFO] 2024-05-16 22:29:43,427: Added node of type [brsl/Turtlebot_brsl.py] in namespace [/]
+[roslaunch][INFO] 2024-05-16 22:29:43,427: ... selected machine [] for node of type [brsl/Turtlebot_environment.py]
+[roslaunch][INFO] 2024-05-16 22:29:43,427: ... selected machine [] for node of type [brsl/Turtlebot_brsl.py]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,430: start_process_monitor: creating ProcessMonitor
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,430: created process monitor <ProcessMonitor(ProcessMonitor-1, initial daemon)>
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,430: start_process_monitor: ProcessMonitor started
+[roslaunch.parent][INFO] 2024-05-16 22:29:43,430: starting parent XML-RPC server
+[roslaunch.server][INFO] 2024-05-16 22:29:43,431: starting roslaunch XML-RPC server
+[roslaunch.server][INFO] 2024-05-16 22:29:43,431: waiting for roslaunch XML-RPC server to initialize
+[xmlrpc][INFO] 2024-05-16 22:29:43,431: XML-RPC server binding to 0.0.0.0:0
+[xmlrpc][INFO] 2024-05-16 22:29:43,431: Started XML-RPC server [http://2b5e05e0812a:43285/]
+[xmlrpc][INFO] 2024-05-16 22:29:43,431: xml rpc node: starting XML-RPC server
+[roslaunch][INFO] 2024-05-16 22:29:43,443: started roslaunch server http://2b5e05e0812a:43285/
+[roslaunch.parent][INFO] 2024-05-16 22:29:43,443: ... parent XML-RPC server started
+[roslaunch][INFO] 2024-05-16 22:29:43,443: master.is_running[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:29:43,444: master.is_running[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:29:43,448: ROS_MASTER_URI=http://localhost:11311
+[roslaunch][INFO] 2024-05-16 22:29:43,450: setting /roslaunch/uris/host_2b5e05e0812a__43285' to http://2b5e05e0812a:43285/
+[roslaunch][INFO] 2024-05-16 22:29:43,452: load_parameters starting ...
+[roslaunch][INFO] 2024-05-16 22:29:43,455: ... load_parameters complete
+[roslaunch][INFO] 2024-05-16 22:29:43,455: launch_nodes: launching local nodes ...
+[roslaunch][INFO] 2024-05-16 22:29:43,456: ... preparing to launch node of type [brsl/Turtlebot_environment.py]
+[roslaunch][INFO] 2024-05-16 22:29:43,456: create_node_process: package[brsl] type[Turtlebot_environment.py] machine[Machine(name[] env_loader[None] address[localhost] ssh_port[22] user[None] assignable[True] timeout[10.0])] master_uri[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:29:43,456: process[environment-1]: env[{'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log'}]
+[roslaunch][INFO] 2024-05-16 22:29:43,624: process[environment-1]: args[['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_environment.py', '__name:=environment']]
+[roslaunch][INFO] 2024-05-16 22:29:43,625: ... created process [environment-1]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,625: ProcessMonitor.register[environment-1]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,625: ProcessMonitor.register[environment-1] complete
+[roslaunch][INFO] 2024-05-16 22:29:43,625: ... registered process [environment-1]
+[roslaunch][INFO] 2024-05-16 22:29:43,625: process[environment-1]: starting os process
+[roslaunch][INFO] 2024-05-16 22:29:43,625: process[environment-1]: start w/ args [['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_environment.py', '__name:=environment', '__log:=/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/environment-1.log']]
+[roslaunch][INFO] 2024-05-16 22:29:43,625: process[environment-1]: cwd will be [/root/.ros]
+[roslaunch][INFO] 2024-05-16 22:29:43,629: process[environment-1]: started with pid [15006]
+[roslaunch][INFO] 2024-05-16 22:29:43,629: ... successfully launched [environment-1]
+[roslaunch][INFO] 2024-05-16 22:29:43,629: ... preparing to launch node of type [brsl/Turtlebot_brsl.py]
+[roslaunch][INFO] 2024-05-16 22:29:43,629: create_node_process: package[brsl] type[Turtlebot_brsl.py] machine[Machine(name[] env_loader[None] address[localhost] ssh_port[22] user[None] assignable[True] timeout[10.0])] master_uri[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:29:43,630: process[Turtlebot_BRSL-2]: env[{'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-14975.log'}]
+[roslaunch][INFO] 2024-05-16 22:29:43,763: process[Turtlebot_BRSL-2]: args[['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py', '__name:=Turtlebot_BRSL']]
+[roslaunch][INFO] 2024-05-16 22:29:43,763: ... created process [Turtlebot_BRSL-2]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,763: ProcessMonitor.register[Turtlebot_BRSL-2]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,763: ProcessMonitor.register[Turtlebot_BRSL-2] complete
+[roslaunch][INFO] 2024-05-16 22:29:43,763: ... registered process [Turtlebot_BRSL-2]
+[roslaunch][INFO] 2024-05-16 22:29:43,763: process[Turtlebot_BRSL-2]: starting os process
+[roslaunch][INFO] 2024-05-16 22:29:43,763: process[Turtlebot_BRSL-2]: start w/ args [['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py', '__name:=Turtlebot_BRSL', '__log:=/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/Turtlebot_BRSL-2.log']]
+[roslaunch][INFO] 2024-05-16 22:29:43,763: process[Turtlebot_BRSL-2]: cwd will be [/root/.ros]
+[roslaunch][ERROR] 2024-05-16 22:29:43,767: OSError(8, Exec format error)
+[roslaunch][ERROR] 2024-05-16 22:29:43,768: RLException: Unable to launch [Turtlebot_BRSL-2]. 
+If it is a script, you may be missing a '#!' declaration at the top.
+[roslaunch][ERROR] 2024-05-16 22:29:43,768: The traceback for the exception was written to the log file
+[roslaunch][ERROR] 2024-05-16 22:29:43,770: Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/nodeprocess.py", line 340, in start
+    self.popen = subprocess.Popen(self.args, cwd=cwd, stdout=logfileout, stderr=logfileerr, env=full_env, close_fds=close_file_descriptor, preexec_fn=preexec_function)
+  File "/usr/lib/python3.8/subprocess.py", line 858, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.8/subprocess.py", line 1704, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+OSError: [Errno 8] Exec format error: '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/__init__.py", line 347, in main
+    p.start()
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/parent.py", line 316, in start
+    self.runner.launch()
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/launch.py", line 677, in launch
+    succeeded, failed = self._launch_nodes()
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/launch.py", line 383, in _launch_nodes
+    proc, success = self.launch_node(node)
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/launch.py", line 576, in launch_node
+    success = process.start()
+  File "/opt/ros/noetic/lib/python3/dist-packages/roslaunch/nodeprocess.py", line 345, in start
+    raise FatalProcessLaunch("Unable to launch [%s]. \nIf it is a script, you may be missing a '#!' declaration at the top."%self.name)
+roslaunch.pmon.FatalProcessLaunch: Unable to launch [Turtlebot_BRSL-2]. 
+If it is a script, you may be missing a '#!' declaration at the top.
+
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,771: ProcessMonitor.shutdown <ProcessMonitor(ProcessMonitor-1, started daemon 139966759618304)>
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,831: ProcessMonitor._post_run <ProcessMonitor(ProcessMonitor-1, started daemon 139966759618304)>
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,832: ProcessMonitor._post_run <ProcessMonitor(ProcessMonitor-1, started daemon 139966759618304)>: remaining procs are [<roslaunch.nodeprocess.LocalProcess object at 0x7f4c87fabd90>, <roslaunch.nodeprocess.LocalProcess object at 0x7f4c9d0a0880>]
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,832: ProcessMonitor exit: killing Turtlebot_BRSL-2
+[roslaunch][INFO] 2024-05-16 22:29:43,832: [Turtlebot_BRSL-2] killing on exit
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,833: ProcessMonitor exit: killing environment-1
+[roslaunch][INFO] 2024-05-16 22:29:43,833: [environment-1] killing on exit
+[roslaunch][INFO] 2024-05-16 22:29:43,834: process[environment-1]: killing os process with pid[15006] pgid[15006]
+[roslaunch][INFO] 2024-05-16 22:29:43,834: [environment-1] sending SIGINT to pgid [15006]
+[roslaunch][INFO] 2024-05-16 22:29:43,834: [environment-1] sent SIGINT to pgid [15006]
+[roslaunch][INFO] 2024-05-16 22:29:43,935: process[environment-1]: SIGINT killed with return value -2
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,935: ProcessMonitor exit: cleaning up data structures and signals
+[roslaunch.pmon][INFO] 2024-05-16 22:29:43,935: ProcessMonitor exit: pmon has shutdown
+[rospy.core][INFO] 2024-05-16 22:29:43,935: signal_shutdown [atexit]
+root@2b5e05e0812a:/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws# roslaunch brsl turtlebot.launch
+... logging to /root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-15320.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://2b5e05e0812a:37995/
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rosdistro: noetic
+ * /rosversion: 1.16.0
+
+NODES
+  /
+    Turtlebot_BRSL (brsl/Turtlebot_brsl.py)
+    environment (brsl/Turtlebot_environment.py)
+
+ROS_MASTER_URI=http://localhost:11311
+
+process[environment-1]: started with pid [15355]
+process[Turtlebot_BRSL-2]: started with pid [15356]
+2024-05-16 22:31:07.368758: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-05-16 22:31:07.373804: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2024-05-16 22:31:07.422378: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2024-05-16 22:31:07.423339: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-05-16 22:31:07.493257: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-05-16 22:31:07.497399: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2024-05-16 22:31:07.615126: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2024-05-16 22:31:07.616635: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-05-16 22:31:08.726309: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-05-16 22:31:08.789416: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/usr/local/lib/python3.8/dist-packages/tf_agents/specs/array_spec.py:335: RuntimeWarning: invalid value encountered in cast
+  self._minimum[self._minimum == -np.inf] = low
+/usr/local/lib/python3.8/dist-packages/tf_agents/specs/array_spec.py:336: RuntimeWarning: invalid value encountered in cast
+  self._minimum[self._minimum == np.inf] = high
+/usr/local/lib/python3.8/dist-packages/tf_agents/specs/array_spec.py:338: RuntimeWarning: invalid value encountered in cast
+  self._maximum[self._maximum == -np.inf] = low
+/usr/local/lib/python3.8/dist-packages/tf_agents/specs/array_spec.py:339: RuntimeWarning: invalid value encountered in cast
+  self._maximum[self._maximum == np.inf] = high
+Traceback (most recent call last):
+  File "/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py", line 561, in <module>
+    app.run(main)
+  File "/usr/local/lib/python3.8/dist-packages/absl/app.py", line 308, in run
+    _run_main(main, args)
+  File "/usr/local/lib/python3.8/dist-packages/absl/app.py", line 254, in _run_main
+    sys.exit(main(argv))
+  File "/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py", line 555, in main
+    train_eval(FLAGS.root_dir, num_iterations=FLAGS.num_iterations)
+  File "/usr/local/lib/python3.8/dist-packages/gin/config.py", line 1605, in gin_wrapper
+    utils.augment_exception_message_and_reraise(e, err_str)
+  File "/usr/local/lib/python3.8/dist-packages/gin/utils.py", line 41, in augment_exception_message_and_reraise
+    raise proxy.with_traceback(exception.__traceback__) from None
+  File "/usr/local/lib/python3.8/dist-packages/gin/config.py", line 1582, in gin_wrapper
+    return fn(*new_args, **new_kwargs)
+  File "/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py", line 108, in train_eval
+    sl = SafetyLayer()
+  File "/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/SafetyLayer.py", line 68, in __init__
+    self.nonlinear_reachability = NLReachability("/home/mahmoud/exp/Turtlebot/BRSL/Data/")
+  File "/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/reachability/NLReachability.py", line 62, in __init__
+    self.u = np.load(os.path.join(path, 'U_azure_500.npy'), allow_pickle=True).T 
+  File "/usr/local/lib/python3.8/dist-packages/numpy/lib/npyio.py", line 405, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mahmoud/exp/Turtlebot/BRSL/Data/U_azure_500.npy'
+  In call to configurable 'train_eval' (<function train_eval at 0x7f5709feb550>)
+[Turtlebot_BRSL-2] process has died [pid 15356, exit code 1, cmd /workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py __name:=Turtlebot_BRSL __log:=/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/Turtlebot_BRSL-2.log].
+log file: /root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/Turtlebot_BRSL-2*.log
+^C[environment-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+done
+root@2b5e05e0812a:/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws# cat /root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-15320.log
+[roslaunch][INFO] 2024-05-16 22:31:05,762: Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+[roslaunch][INFO] 2024-05-16 22:31:05,791: Done checking log file disk usage. Usage is <1GB.
+[roslaunch][INFO] 2024-05-16 22:31:05,792: roslaunch starting with args ['/opt/ros/noetic/bin/roslaunch', 'brsl', 'turtlebot.launch']
+[roslaunch][INFO] 2024-05-16 22:31:05,792: roslaunch env is environ({'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-15320.log'})
+[roslaunch][INFO] 2024-05-16 22:31:05,792: starting in server mode
+[roslaunch.parent][INFO] 2024-05-16 22:31:05,792: starting roslaunch parent run
+[roslaunch][INFO] 2024-05-16 22:31:05,792: loading roscore config file /opt/ros/noetic/etc/ros/roscore.xml
+[roslaunch][INFO] 2024-05-16 22:31:06,232: Added core node of type [rosout/rosout] in namespace [/]
+[roslaunch.config][INFO] 2024-05-16 22:31:06,232: loading config file /workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/launch/turtlebot.launch
+[roslaunch][INFO] 2024-05-16 22:31:06,235: Added node of type [brsl/Turtlebot_environment.py] in namespace [/]
+[roslaunch][INFO] 2024-05-16 22:31:06,235: Added node of type [brsl/Turtlebot_brsl.py] in namespace [/]
+[roslaunch][INFO] 2024-05-16 22:31:06,235: ... selected machine [] for node of type [brsl/Turtlebot_environment.py]
+[roslaunch][INFO] 2024-05-16 22:31:06,236: ... selected machine [] for node of type [brsl/Turtlebot_brsl.py]
+[roslaunch.pmon][INFO] 2024-05-16 22:31:06,238: start_process_monitor: creating ProcessMonitor
+[roslaunch.pmon][INFO] 2024-05-16 22:31:06,238: created process monitor <ProcessMonitor(ProcessMonitor-1, initial daemon)>
+[roslaunch.pmon][INFO] 2024-05-16 22:31:06,239: start_process_monitor: ProcessMonitor started
+[roslaunch.parent][INFO] 2024-05-16 22:31:06,239: starting parent XML-RPC server
+[roslaunch.server][INFO] 2024-05-16 22:31:06,239: starting roslaunch XML-RPC server
+[roslaunch.server][INFO] 2024-05-16 22:31:06,239: waiting for roslaunch XML-RPC server to initialize
+[xmlrpc][INFO] 2024-05-16 22:31:06,239: XML-RPC server binding to 0.0.0.0:0
+[xmlrpc][INFO] 2024-05-16 22:31:06,239: Started XML-RPC server [http://2b5e05e0812a:37995/]
+[xmlrpc][INFO] 2024-05-16 22:31:06,240: xml rpc node: starting XML-RPC server
+[roslaunch][INFO] 2024-05-16 22:31:06,252: started roslaunch server http://2b5e05e0812a:37995/
+[roslaunch.parent][INFO] 2024-05-16 22:31:06,252: ... parent XML-RPC server started
+[roslaunch][INFO] 2024-05-16 22:31:06,253: master.is_running[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:31:06,255: master.is_running[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:31:06,257: ROS_MASTER_URI=http://localhost:11311
+[roslaunch][INFO] 2024-05-16 22:31:06,259: setting /roslaunch/uris/host_2b5e05e0812a__37995' to http://2b5e05e0812a:37995/
+[roslaunch][INFO] 2024-05-16 22:31:06,260: load_parameters starting ...
+[roslaunch][INFO] 2024-05-16 22:31:06,264: ... load_parameters complete
+[roslaunch][INFO] 2024-05-16 22:31:06,264: launch_nodes: launching local nodes ...
+[roslaunch][INFO] 2024-05-16 22:31:06,265: ... preparing to launch node of type [brsl/Turtlebot_environment.py]
+[roslaunch][INFO] 2024-05-16 22:31:06,265: create_node_process: package[brsl] type[Turtlebot_environment.py] machine[Machine(name[] env_loader[None] address[localhost] ssh_port[22] user[None] assignable[True] timeout[10.0])] master_uri[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:31:06,265: process[environment-1]: env[{'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-15320.log'}]
+[roslaunch][INFO] 2024-05-16 22:31:06,437: process[environment-1]: args[['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_environment.py', '__name:=environment']]
+[roslaunch][INFO] 2024-05-16 22:31:06,437: ... created process [environment-1]
+[roslaunch.pmon][INFO] 2024-05-16 22:31:06,437: ProcessMonitor.register[environment-1]
+[roslaunch.pmon][INFO] 2024-05-16 22:31:06,437: ProcessMonitor.register[environment-1] complete
+[roslaunch][INFO] 2024-05-16 22:31:06,437: ... registered process [environment-1]
+[roslaunch][INFO] 2024-05-16 22:31:06,437: process[environment-1]: starting os process
+[roslaunch][INFO] 2024-05-16 22:31:06,437: process[environment-1]: start w/ args [['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_environment.py', '__name:=environment', '__log:=/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/environment-1.log']]
+[roslaunch][INFO] 2024-05-16 22:31:06,437: process[environment-1]: cwd will be [/root/.ros]
+[roslaunch][INFO] 2024-05-16 22:31:06,441: process[environment-1]: started with pid [15355]
+[roslaunch][INFO] 2024-05-16 22:31:06,441: ... successfully launched [environment-1]
+[roslaunch][INFO] 2024-05-16 22:31:06,441: ... preparing to launch node of type [brsl/Turtlebot_brsl.py]
+[roslaunch][INFO] 2024-05-16 22:31:06,441: create_node_process: package[brsl] type[Turtlebot_brsl.py] machine[Machine(name[] env_loader[None] address[localhost] ssh_port[22] user[None] assignable[True] timeout[10.0])] master_uri[http://localhost:11311]
+[roslaunch][INFO] 2024-05-16 22:31:06,442: process[Turtlebot_BRSL-2]: env[{'SHELL': '/bin/bash', 'ROS_VERSION': '1', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.89.1', 'PKG_CONFIG_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'HOSTNAME': '2b5e05e0812a', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-83b51d4c-0728-4cb6-9bf8-2496cb352e8e.sock', 'ROS_PACKAGE_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src:/opt/ros/noetic/share', 'ROSLISP_PACKAGE_DIRECTORIES': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/share/common-lisp', 'PWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws', 'VSCODE_GIT_ASKPASS_NODE': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'ROS_ETC_DIR': '/opt/ros/noetic/etc/ros', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'REMOTE_CONTAINERS': 'true', 'WAYLAND_DISPLAY': 'vscode-wayland-2dfb9651-bb39-4779-822f-38a3e5b7381a.sock', 'GIT_ASKPASS': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel:/opt/ros/noetic', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PYTHONPATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages', 'TERM': 'xterm-256color', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/.X11-unix/X0","/root/.gnupg/S.gpg-agent"]', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_GIT_IPC_HANDLE': '/tmp/user/0/vscode-git-71e681c8ee.sock', 'DISPLAY': ':0', 'SHLVL': '2', 'ROS_MASTER_URI': 'http://localhost:11311', 'LD_LIBRARY_PATH': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/devel/lib:/opt/ros/noetic/lib', 'XDG_RUNTIME_DIR': '/tmp/user/0', 'VSCODE_GIT_ASKPASS_MAIN': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/extensions/git/dist/askpass-main.js', 'BROWSER': '/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/helpers/browser.sh', 'PATH': '/opt/ros/noetic/bin:/vscode/vscode-server/bin/linux-x64/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_ROOT': '/opt/ros/noetic/share/ros', 'ROS_DISTRO': 'noetic', 'REMOTE_CONTAINERS_DISPLAY_SOCK': '/tmp/.X11-unix/X0', 'OLDPWD': '/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-7f59eba6-9185-4d1c-affc-3b37f2b82b2d.sock', '_': '/opt/ros/noetic/bin/roslaunch', 'LC_CTYPE': 'C.UTF-8', 'ROS_LOG_FILENAME': '/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/roslaunch-2b5e05e0812a-15320.log'}]
+[roslaunch][INFO] 2024-05-16 22:31:06,578: process[Turtlebot_BRSL-2]: args[['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py', '__name:=Turtlebot_BRSL']]
+[roslaunch][INFO] 2024-05-16 22:31:06,579: ... created process [Turtlebot_BRSL-2]
+[roslaunch.pmon][INFO] 2024-05-16 22:31:06,579: ProcessMonitor.register[Turtlebot_BRSL-2]
+[roslaunch.pmon][INFO] 2024-05-16 22:31:06,579: ProcessMonitor.register[Turtlebot_BRSL-2] complete
+[roslaunch][INFO] 2024-05-16 22:31:06,579: ... registered process [Turtlebot_BRSL-2]
+[roslaunch][INFO] 2024-05-16 22:31:06,579: process[Turtlebot_BRSL-2]: starting os process
+[roslaunch][INFO] 2024-05-16 22:31:06,579: process[Turtlebot_BRSL-2]: start w/ args [['/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py', '__name:=Turtlebot_BRSL', '__log:=/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/Turtlebot_BRSL-2.log']]
+[roslaunch][INFO] 2024-05-16 22:31:06,579: process[Turtlebot_BRSL-2]: cwd will be [/root/.ros]
+[roslaunch][INFO] 2024-05-16 22:31:06,584: process[Turtlebot_BRSL-2]: started with pid [15356]
+[roslaunch][INFO] 2024-05-16 22:31:06,584: ... successfully launched [Turtlebot_BRSL-2]
+[roslaunch][INFO] 2024-05-16 22:31:06,584: ... launch_nodes complete
+[roslaunch.pmon][INFO] 2024-05-16 22:31:06,584: registrations completed <ProcessMonitor(ProcessMonitor-1, started daemon 140176221013760)>
+[roslaunch.parent][INFO] 2024-05-16 22:31:06,584: ... roslaunch parent running, waiting for process exit
+[roslaunch][INFO] 2024-05-16 22:31:06,584: spin
+[roslaunch][ERROR] 2024-05-16 22:31:17,574: [Turtlebot_BRSL-2] process has died [pid 15356, exit code 1, cmd /workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws/src/brsl/scripts/Turtlebot_brsl.py __name:=Turtlebot_BRSL __log:=/root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/Turtlebot_BRSL-2.log].
+log file: /root/.ros/log/ad1ba258-13d3-11ef-9ced-0242ac110002/Turtlebot_BRSL-2*.log
+[roslaunch.pmon][INFO] 2024-05-16 22:31:17,574: ProcessMonitor.unregister[Turtlebot_BRSL-2] starting
+[roslaunch.pmon][INFO] 2024-05-16 22:31:17,574: ProcessMonitor.unregister[Turtlebot_BRSL-2] complete
+[roslaunch.pmon][INFO] 2024-05-16 22:32:40,277: ProcessMonitor.shutdown <ProcessMonitor(ProcessMonitor-1, started daemon 140176221013760)>
+[roslaunch.pmon][INFO] 2024-05-16 22:32:40,291: ProcessMonitor._post_run <ProcessMonitor(ProcessMonitor-1, started daemon 140176221013760)>
+[roslaunch.pmon][INFO] 2024-05-16 22:32:40,291: ProcessMonitor._post_run <ProcessMonitor(ProcessMonitor-1, started daemon 140176221013760)>: remaining procs are [<roslaunch.nodeprocess.LocalProcess object at 0x7f7d4cd9fca0>]
+[roslaunch.pmon][INFO] 2024-05-16 22:32:40,292: ProcessMonitor exit: killing environment-1
+[roslaunch][INFO] 2024-05-16 22:32:40,292: [environment-1] killing on exit
+[roslaunch][INFO] 2024-05-16 22:32:40,293: process[environment-1]: killing os process with pid[15355] pgid[15355]
+[roslaunch][INFO] 2024-05-16 22:32:40,293: [environment-1] sending SIGINT to pgid [15355]
+[roslaunch][INFO] 2024-05-16 22:32:40,293: [environment-1] sent SIGINT to pgid [15355]
+[roslaunch][INFO] 2024-05-16 22:32:41,497: process[environment-1]: SIGINT killed with return value 0
+[roslaunch.pmon][INFO] 2024-05-16 22:32:41,497: ProcessMonitor exit: cleaning up data structures and signals
+[roslaunch.pmon][INFO] 2024-05-16 22:32:41,497: ProcessMonitor exit: pmon has shutdown
+[roslaunch][INFO] 2024-05-16 22:32:41,498: process monitor is done spinning, initiating full shutdown
+[roslaunch][INFO] 2024-05-16 22:32:41,498: runner.stop()
+[roslaunch][INFO] 2024-05-16 22:32:41,498: shutting down processing monitor...
+[roslaunch][INFO] 2024-05-16 22:32:41,498: shutting down processing monitor <ProcessMonitor(ProcessMonitor-1, stopped daemon 140176221013760)>
+[roslaunch.pmon][INFO] 2024-05-16 22:32:41,498: ProcessMonitor.shutdown <ProcessMonitor(ProcessMonitor-1, stopped daemon 140176221013760)>
+[roslaunch][INFO] 2024-05-16 22:32:41,498: ... shutting down processing monitor complete
+[roslaunch][INFO] 2024-05-16 22:32:41,498: done
+[roslaunch.pmon][INFO] 2024-05-16 22:32:41,498: ProcessMonitor.shutdown <ProcessMonitor(ProcessMonitor-1, stopped daemon 140176221013760)>
+[rospy.core][INFO] 2024-05-16 22:32:41,498: signal_shutdown [atexit]
+root@2b5e05e0812a:/workspaces/Safe-Reinforcement-Learning-for-Black-Box-Systems-Using-Reachability-Analysis/catkin_ws# 
