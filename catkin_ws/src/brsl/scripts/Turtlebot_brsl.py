@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # this script is modified from tf-agents TD3 Examples
 
 from __future__ import absolute_import
