@@ -14,17 +14,8 @@ RUN apt install python3.9 -y
 RUN python3.9 --version
 RUN apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential -y
 RUN apt install python3-pip -y
-RUN python3 -m pip install absl-py
-RUN python3 -m pip install gin
-RUN python3 -m pip install tensorflow
-RUN python3 -m pip install gin-config
-RUN python3 -m pip install tf-agents==0.17.0
-RUN python3 -m pip install scipy
-RUN python3 -m pip install joblib
-RUN python3 -m pip install tensorboardX
-RUN python3 -m pip install torch
-RUN python3 -m pip install omegaconf==2.0
-RUN python3 -m pip install hydra-core==1.1.0
-RUN python3 -m pip install mbrl==v0.1.4
+
+COPY ./requirements.txt /requirements.txt
+RUN pip3 install -r /requirements.txt
 
 CMD [ "sleep", "infinity" ]
