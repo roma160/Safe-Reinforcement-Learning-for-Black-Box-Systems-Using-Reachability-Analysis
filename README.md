@@ -39,6 +39,7 @@ To run the agents, first, make a catkin_ws.
 cd
 mkdir -p catkin_ws/src
 cd catkin_ws
+source /opt/ros/noetic/setup.bash
 catkin_make
 ```
 
@@ -46,8 +47,9 @@ Then copy both `brsl` and `brsl_msgs` to `catkin_ws/src` in your home directory.
 
 Finally, run:
 ```
-cd ~/catkin_ws/src
-catkin_make
+source devel/setup.bash
+cd ./src
+catkin_make install
 ```
 
 This should build the repository.
