@@ -13,7 +13,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt install python3.9 -y
 RUN python3.9 --version
 RUN apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential -y
-RUN apt install python3-pip -y
+RUN apt install python3-pip -y # TODO: this actually installs on python 3.8
 
 COPY ./requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
