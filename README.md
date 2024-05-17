@@ -20,7 +20,7 @@ python -m pip install absl-py
 python -m pip install gin
 python -m pip install tensorflow
 python -m pip install gin-config
-python -m pip install tf-agnets
+python -m pip install tf-agents
 python -m pip install scipy
 python -m pip install joblib
 python -m pip install tensorboardX
