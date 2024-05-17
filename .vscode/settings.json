@@ -1,3 +1,7 @@
 {
-    "ros.distro": "${workspaceFolder}/catkin_ws/devel/setup.bash"
+    "ros.distro": "${workspaceFolder}/catkin_ws/devel/setup.bash",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
 }
