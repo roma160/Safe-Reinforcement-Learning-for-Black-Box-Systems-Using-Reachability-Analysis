@@ -62,59 +62,61 @@ FLAGS = flags.FLAGS
 
 @gin.configurable
 def train_eval(
-		root_dir,
-		env_name='Turtlebot',
-		num_iterations=2000000,
-		actor_fc_layers=(512, 256, 64),
-		critic_obs_fc_layers=(512,),
-		critic_action_fc_layers=None,
-		critic_joint_fc_layers=(300,),
-		# Params for collect
-		initial_collect_steps=2000,
-		collect_steps_per_iteration=1,
-		replay_buffer_capacity=100000,
-		exploration_noise_std=0.1,
-		# Params for target update
-		target_update_tau=0.05,
-		target_update_period=5,
-		# Params for train
-		train_steps_per_iteration=1,
-		batch_size=64,
-		actor_update_period=2,
-		actor_learning_rate=1e-4,
-		critic_learning_rate=1e-3,
-		dqda_clipping=None,
-		td_errors_loss_fn=tf.compat.v1.losses.huber_loss,
-		gamma=0.995,
-		reward_scale_factor=1.0,
-		gradient_clipping=None,
-		use_tf_functions=True,
-		# Params for eval
-		num_eval_episodes=10,
-		eval_interval=1000,
-		# Params for checkpoints, summaries, and logging
-		log_interval=1000,
-		summary_interval=1000,
-		summaries_flush_secs=10,
-		debug_summaries=False,
-		summarize_grads_and_vars=False,
-		eval_metrics_callback=None):
+	root_dir,
+	env_name='Turtlebot',
+	num_iterations=2000000,
+	actor_fc_layers=(512, 256, 64),
+	critic_obs_fc_layers=(512,),
+	critic_action_fc_layers=None,
+	critic_joint_fc_layers=(300,),
+	# Params for collect
+	initial_collect_steps=2000,
+	collect_steps_per_iteration=1,
+	replay_buffer_capacity=100000,
+	exploration_noise_std=0.1,
+	# Params for target update
+	target_update_tau=0.05,
+	target_update_period=5,
+	# Params for train
+	train_steps_per_iteration=1,
+	batch_size=64,
+	actor_update_period=2,
+	actor_learning_rate=1e-4,
+	critic_learning_rate=1e-3,
+	dqda_clipping=None,
+	td_errors_loss_fn=tf.compat.v1.losses.huber_loss,
+	gamma=0.995,
+	reward_scale_factor=1.0,
+	gradient_clipping=None,
+	use_tf_functions=True,
+	# Params for eval
+	num_eval_episodes=10,
+	eval_interval=1000,
+	# Params for checkpoints, summaries, and logging
+	log_interval=1000,
+	summary_interval=1000,
+	summaries_flush_secs=10,
+	debug_summaries=False,
+	summarize_grads_and_vars=False,
+	eval_metrics_callback=None
+):
 
-
-	
-	
 	rospy.init_node('BRSL_TB')
 	"""A simple train and eval for TD3."""
 	sl = SafetyLayer()
+
 	root_dir = os.path.expanduser(root_dir)
 	train_dir = os.path.join(root_dir, 'train')
 	eval_dir = os.path.join(root_dir, 'eval')
 	safety_dir = os.path.join(root_dir, 'safety')
+
 	train_summary_writer = tf.compat.v2.summary.create_file_writer(
 			train_dir, flush_millis=summaries_flush_secs * 1000)
 	train_summary_writer.set_as_default()
+
 	#writer = SummaryWriter(safety_dir)
 	metrics_collector = MetricsCollector(safety_dir)
+
 	eval_summary_writer = tf.compat.v2.summary.create_file_writer(
 			eval_dir, flush_millis=summaries_flush_secs * 1000)
 	eval_metrics = [
@@ -138,16 +140,17 @@ def train_eval(
 
 		critic_net_input_specs = (tf_env.time_step_spec().observation,
 															tf_env.action_spec())
-
 		critic_net = critic_network.CriticNetwork(
 				critic_net_input_specs,
 				observation_fc_layer_params=critic_obs_fc_layers,
 				action_fc_layer_params=critic_action_fc_layers,
 				joint_fc_layer_params=critic_joint_fc_layers,
 		)
+
 		noise = tf.Variable(0.1)
 		print("*"*80)
 		print(noise, type(noise))
+
 		tf_agent = td3_agent.Td3Agent(
 				tf_env.time_step_spec(),
 				tf_env.action_spec(),
@@ -172,7 +175,6 @@ def train_eval(
 				summarize_grads_and_vars=summarize_grads_and_vars,
 				train_step_counter=global_step,
 		)
-
 		tf_agent.initialize()
 
 		train_metrics = [
@@ -195,13 +197,11 @@ def train_eval(
 				collect_policy,
 				observers=[replay_buffer.add_batch],
 				num_steps=initial_collect_steps)
-		
 		collect_driver = dynamic_step_driver.DynamicStepDriver(
 				tf_env,
 				collect_policy,
 				observers=[replay_buffer.add_batch] + train_metrics,
 				num_steps=collect_steps_per_iteration)
-
 		if use_tf_functions:
 			initial_collect_driver.run = common.function(initial_collect_driver.run)
 			collect_driver.run = common.function(collect_driver.run)
@@ -226,10 +226,10 @@ def train_eval(
 				sample_batch_size=batch_size,
 				num_steps=2).prefetch(3)
 		iterator = iter(dataset)
+		
 		def train_step():
 			experience, _ = next(iterator)
 			return tf_agent.train(experience)
-
 		if use_tf_functions:
 			train_step = common.function(train_step)
 
@@ -244,59 +244,52 @@ def train_eval(
 			seed = 0
 			#env = cartpole_env.CartPoleEnv()
 			#env.seed(seed)
+			trial_length = 500
+			num_trials = 10
+			ensemble_size = 1
+
 			rng = np.random.default_rng(seed=0)
 			generator = torch.Generator(device=device)
 			generator.manual_seed(seed)
 			obs_shape = tf_env.observation_spec().shape#env.observation_space.shape
 			act_shape = tf_env.action_spec().shape#env.action_space.shape
-
-
-
-			trial_length = 500
-			num_trials = 10
-			ensemble_size = 1
-
 			cfg_dict = {
-						# dynamics model configuration
-						"dynamics_model": {
-								"model": {
-										"_target_": "mbrl.models.GaussianMLP",
-										"device": device,
-										"num_layers": 3,
-										"ensemble_size": ensemble_size,
-										"hid_size": 200,
-										"use_silu": True,
-										"in_size": "???",
-										"out_size": "???",
-										"deterministic": False,
-										"propagation_method": "fixed_model"
-								}
-						},
-						# options for training the dynamics model
-						"algorithm": {
-								"learned_rewards": False,
-								"target_is_delta": True,
-								"normalize": True,
-								"dataset_size": 250
-						},
-						# these are experiment specific options
-						"overrides": {
-								"trial_length": trial_length,
-								"num_steps": num_trials * trial_length,
-								"model_batch_size": 32,
-								"validation_ratio": 0.05
-						}
+				# dynamics model configuration
+				"dynamics_model": {
+					"model": {
+						"_target_": "mbrl.models.GaussianMLP",
+						"device": device,
+						"num_layers": 3,
+						"ensemble_size": ensemble_size,
+						"hid_size": 200,
+						"use_silu": True,
+						"in_size": "???",
+						"out_size": "???",
+						"deterministic": False,
+						"propagation_method": "fixed_model"
+					}
+				},
+				# options for training the dynamics model
+				"algorithm": {
+					"learned_rewards": False,
+					"target_is_delta": True,
+					"normalize": True,
+					"dataset_size": 250
+				},
+				# these are experiment specific options
+				"overrides": {
+					"trial_length": trial_length,
+					"num_steps": num_trials * trial_length,
+					"model_batch_size": 32,
+					"validation_ratio": 0.05
 				}
+			}
 			cfg = omegaconf.OmegaConf.create(cfg_dict)
-
 
 
 			# Create a 1-D dynamics model for this environment
 			dynamics_model = common_util.create_one_dim_tr_model(cfg, obs_shape, act_shape)
-
 			mbrl_replay_buffer = common_util.create_replay_buffer(cfg, obs_shape, act_shape, rng=rng)
-
-
 			state = tf_env._reset()
 
 			time_step = tf_env.current_time_step()
@@ -314,15 +307,21 @@ def train_eval(
 				if(next_time_step.is_last()):
 					done = True
 
-				mbrl_replay_buffer.add(time_step.observation.numpy().astype(np.float64), action_step.action.astype(np.float64), next_time_step.observation.numpy().astype(np.float64), next_time_step.reward.numpy().astype(np.float64), done)
+				mbrl_replay_buffer.add(
+					time_step.observation.numpy().astype(np.float64),
+					action_step.action.astype(np.float64),
+					next_time_step.observation.numpy().astype(np.float64),
+					next_time_step.reward.numpy().astype(np.float64),
+					done
+				)
 				time_step = next_time_step
 			
 				train_losses = []
 				val_scores = []
 
 				def train_callback(_model, _total_calls, _epoch, tr_loss, val_score, _best_val):
-						train_losses.append(tr_loss)
-						val_scores.append(val_score.mean().item())   # this returns val score per ensemble model
+					train_losses.append(tr_loss)
+					val_scores.append(val_score.mean().item())   # this returns val score per ensemble model
 
 				model_trainer = models.ModelTrainer(dynamics_model, optim_lr=1e-3, weight_decay=5e-5)
 				_rng = torch.Generator(device=device)
@@ -330,14 +329,14 @@ def train_eval(
 				actions = torch.from_numpy(action_step.action.astype(np.float64)).to(device)
 
 				model_in = mbrl.types.TransitionBatch(
-										_current_obs, actions, None, None, None
-								)
+					_current_obs, actions, None, None, None
+				)
 
 				next_observs, pred_rewards = dynamics_model.sample(
-										model_in,
-										deterministic=True,
-										rng=_rng,
-								)
+					model_in,
+					deterministic=True,
+					rng=_rng,
+				)
 
 			######################## Train
 				if (i > 100):
@@ -408,39 +407,47 @@ def train_eval(
 			#rate.sleep()
 			start_time = time.time()
 			times = []
-			
 			next_action = None
 
 			if time_step is None:
 				time_step = tf_env.current_time_step()
 			if policy_state is None:
 				policy_state = collect_policy.get_initial_state(tf_env.batch_size)
-
-			action_step = collect_policy.action(time_step, policy_state)
 			
+			action_step = collect_policy.action(time_step, policy_state)
 			if(dream):
 				start_t = time.time()
-				mbrl_time_step = TimeStep(discount = tf.identity(time_step.discount), reward = tf.identity(time_step.reward), 
-																	observation = tf.identity(time_step.observation), step_type = tf.identity(time_step.step_type))
+				mbrl_time_step = TimeStep(
+					discount = tf.identity(time_step.discount),
+					reward = tf.identity(time_step.reward), 
+					observation = tf.identity(time_step.observation),
+					step_type = tf.identity(time_step.step_type)
+				)
 				mbrl_action_step = PolicyStep(action = tf.identity(action_step.action))
 				plan = [action_step.action.numpy().squeeze().tolist()]
+
+				# Here the actual dreaming takes place
+				# The result of the dreaming is the plan: list
 				for i in range(3):
-					
 					_current_obs = torch.from_numpy(mbrl_time_step.observation.numpy().astype(np.float64)).to(device)
 					actions = torch.from_numpy(mbrl_action_step.action.numpy().astype(np.float64)).to(device)
 
 					model_in = mbrl.types.TransitionBatch(
-											_current_obs, actions, None, None, None
-									)
+						_current_obs, actions, None, None, None
+					)
 
 					next_observs, pred_rewards = dynamics_model.sample(
-											model_in,
-											deterministic=True,
-											rng=_rng,
-									)
+						model_in,
+						deterministic=True,
+						rng=_rng,
+					)
 
-					mbrl_time_step = TimeStep(discount = mbrl_time_step.discount, reward = mbrl_time_step.reward, 
-																	observation = tf.identity(next_observs.clone().detach().cpu().numpy().astype(np.float32)), step_type = mbrl_time_step.step_type)
+					mbrl_time_step = TimeStep(
+						discount = mbrl_time_step.discount,
+						reward = mbrl_time_step.reward, 
+						observation = tf.identity(next_observs.clone().detach().cpu().numpy().astype(np.float32)),
+						step_type = mbrl_time_step.step_type
+					)
 					mbrl_action_step = collect_policy.action(mbrl_time_step, policy_state)
 					plan.append(mbrl_action_step.action.numpy().squeeze().tolist())
 
@@ -451,10 +458,12 @@ def train_eval(
 				plan_holder = np.zeros((10, 8)).astype(np.float32)
 				plan_holder[:4, :2] = plan 
 
+				# Here we send the plan to the safety layer, to the next SAFE action
 				res, next_action = sl.enforce_safety(reachability_state, plan_holder, readings)
 				plan_t = time.time() - start_t
 				moving.append(res)
 				moving.pop(0)
+			
 			##########################################################################################################################################
 			if(collect_reachability_data):
 				random_a = np.array([[0, 0]], dtype = np.float32)
@@ -470,7 +479,6 @@ def train_eval(
 			action_step = action_step._replace(action = np.copy(next_action).reshape((1, 2)))
 
 			with tf.control_dependencies(tf.nest.flatten([time_step])):
-
 				if(moving == [False] * 20):
 					new_action = np.array([[0, 0.5]], dtype = np.float32)
 					action_step = action_step._replace(action = new_action)

@@ -6,6 +6,10 @@ import math
 from reachability.Zonotope import Zonotope
 
 class Pose:
+    """
+        Stores a pair (x, y) - 2D position
+    """
+
     def __init__(self, *args):
         if(len(args) == 2):
             self.x = args[0] 
@@ -43,16 +47,17 @@ class Pose:
         elif(len(factor) == 2):
             result.x += factor[0]
             result.y += factor[1]
-            
-        return result    
+        return result
+    
     def __mul__(self, factor):
+        """ Elementwise multiplication with a scalar """
         result = Pose(factor * self.x, factor * self.y)
         return result
     
     def __truediv__(self, factor):
+        """ Elementwise division with a scalar """
         result = Pose(self.x / factor, self.y / factor)
         return result
-        
     
     def as_tuple(self):
         return (self.x, self.y)
@@ -63,14 +68,16 @@ class Pose:
 
 
 class SafetyLayer():
+
     def __init__(self, env = "tb"):
         self.env = env
         self.nonlinear_reachability = NLReachability("/home/mahmoud/exp/Turtlebot/BRSL/Data/")
+        self.pool = Pool()
+
         self.old_plan = []
         for i in range(10):
             self.old_plan.append(np.array([0] * 8))
         self.old_plan = np.array(self.old_plan)
-        self.pool = Pool()
         
         self.fail_safe = []
         for i in range(6):
@@ -81,6 +88,7 @@ class SafetyLayer():
 
 
     def get_rays_poses2d(self, readings):
+        """ Only used inside the class """
         angles = [i * (np.pi/(len(readings) - 1)) for i in range(len(readings))]
         poses = []
         
@@ -96,8 +104,8 @@ class SafetyLayer():
 
         return rays_poses
 
-    
     def construct_objects(self, readings, _range = None):
+        """ Only used inside the class """
         objects = []
 
         if(self.env == "tb"):
@@ -134,9 +142,8 @@ class SafetyLayer():
 
         return objects
 
-
-    
     def create_zonotope2d(self, indices, readings):
+        """ Only used inside the class """
         zonotopes = []
         poses = self.get_rays_poses2d(readings)
         #print(poses)
@@ -189,8 +196,18 @@ class SafetyLayer():
                     #print(np.arctan2(line[1], line[0]))
                     #print()
         return zonotopes    
-    
+
     def enforce_safety(self, reachability_state, plan, readings):
+        """
+            Used inside the Turtlebot_brsl.py
+
+            reachability_state = [0, 0]
+
+            plan_holder = np.zeros((10, 8)).astype(np.float32)
+            plan_holder[:4, :2] = model_plan 
+
+            readings = time_step.observation[0, :18].numpy() * 3.5
+        """
         #print("in safety layer", readings)
         obstacles_indices = self.construct_objects(1.3 * readings)
         obstacles = self.create_zonotope2d(obstacles_indices, readings)

@@ -12,6 +12,10 @@ import sys
 import os 
 
 class NLReachability:
+    """
+    This class is used to perform reachability analysis on a non linear system.
+    """
+
     def __init__(self, path=""):
         self.dim_x = 2
         self.dim_u = 8
@@ -20,24 +24,28 @@ class NLReachability:
 
         self.dt = 0.015
         self.params = Params(tFinal = self.dt * 5, dt = self.dt)
-        self.options = Options()
-        #print("dude", sys.path)
 
+        self.options = Options()
         self.options.params["dim_x"] = self.dim_x
         self.options.params["dim_u"] = self.dim_u
+        
         #Number of trajectories
         self.initpoints = 1000
         #Number of time steps
         self.steps = 10
 
-        # Totoal number of samples
+        # Total number of samples
         self.totalsamples = 500#steps * initpoints
 
         #noise zonotope
         self.wfac = 0.001
 
-        self.W = Zonotope(np.array(np.zeros((self.options.params["dim_x"], 1))), self.wfac * np.ones((self.options.params["dim_x"], 1)))
+        self.W = Zonotope(
+            np.array(np.zeros((self.options.params["dim_x"], 1))),
+            self.wfac * np.ones((self.options.params["dim_x"], 1))
+        )
         self.params.params["W"] = self.W
+        
         self.GW = []
         for i in range(self.W.generators().shape[1]):
             vec = np.reshape(self.W.Z[:, i + 1], (self.dim_x, 1))
