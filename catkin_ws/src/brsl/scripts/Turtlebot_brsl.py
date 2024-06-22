@@ -374,6 +374,7 @@ def train_eval(
 		reachability_actions = []
 		reachability_states = []
 
+		print("Start Training...")
 		restore_checkpoint = False
 		restore_checkpoint_step = 410000
 		if(restore_checkpoint):

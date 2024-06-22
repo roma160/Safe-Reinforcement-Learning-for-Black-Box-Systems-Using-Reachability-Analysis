@@ -92,6 +92,7 @@ class NLReachability:
                     L = new_norm
                     eps = L * np.linalg.norm(z1 - z2)
         
+        print("got here", L)
         self.options.params["Zeps"] = Zonotope(np.array(np.zeros((self.dim_x, 1))),eps * np.diag(np.ones((self.options.params["dim_x"], 1)).T[0]))
         #Z_eps_gen = np.load("ZepsZ.npy")#np.save("ZepsZ", eps * np.diag(np.ones((options.params["dim_x"], 1)).T[0]))
         self.options.params["ZepsFlag"] = True

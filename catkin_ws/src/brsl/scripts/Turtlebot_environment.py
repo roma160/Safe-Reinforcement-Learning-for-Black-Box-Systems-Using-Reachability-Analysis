@@ -472,6 +472,7 @@ class TbotEnv(py_environment.PyEnvironment):
 def main():
     rospy.init_node("environment")
     turtlebot_environment = TbotEnv()
+    print("Spinning rospy")
     rospy.spin()
 
 if __name__ == "__main__":
