@@ -9,7 +9,8 @@ from .utils.Params import Params
 from .reachability_nonlinear import *
 import time
 import sys
-import os 
+import os
+import helper
 
 class NLReachability:
     """
@@ -35,7 +36,7 @@ class NLReachability:
         self.steps = 10
 
         # Total number of samples
-        self.totalsamples = 500#steps * initpoints
+        self.totalsamples = 500 #steps * initpoints
 
         #noise zonotope
         self.wfac = 0.001
@@ -67,9 +68,10 @@ class NLReachability:
         self.options.params["tensorOrder"] = 2
         self.options.params["errorOrder"] = 5
 
-        self.u = np.load(os.path.join(path, 'U_azure_500.npy'), allow_pickle=True).T 
-        self.x_meas_vec_0 = np.load(os.path.join(path, 'X0_azure_500.npy'), allow_pickle=True).T
-        self.x_meas_vec_1 = np.load(os.path.join(path, 'X1_azure_500.npy'), allow_pickle=True).T
+        # helper.start_debug()
+        self.u = np.load(os.path.join(path, 'uclean.npy'), allow_pickle=True)
+        self.x_meas_vec_0 = np.load(os.path.join(path, 'X0_clean.npy'), allow_pickle=True)
+        self.x_meas_vec_1 = np.load(os.path.join(path, 'X1clean.npy'), allow_pickle=True)
         #print(u.shape, x_meas_vec_0.shape, "xasd")
         self.X_0T = self.x_meas_vec_0
         self.X_1T = self.x_meas_vec_1
