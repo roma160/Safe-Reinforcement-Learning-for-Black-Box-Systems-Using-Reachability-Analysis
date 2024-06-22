@@ -38,7 +38,7 @@ Given that you are located at the `init` branch, here is how you can run the pro
 2. Open terminal `#0` and run the following commands:
 ```shell
 cd catkin_ws
-source /opt/ros/noetic/setup.bash
+source /usr/ros/noetic/setup.bash
 catkin_make
 
 source devel/setup.bash
