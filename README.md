@@ -16,15 +16,14 @@ you can find the installation steps for ros in the official [link](http://wiki.r
 You need to install the following libraries.
 
 ```
-python -m pip install absl-py
-python -m pip install gin
-python -m pip install tensorflow
-python -m pip install gin-config
-python -m pip install tf-agnets
-python -m pip install scipy
-python -m pip install joblib
-python -m pip install tensorboardX
-python -m pip install torch
+python -m pip install absl-py==2.1.0
+python -m pip install gin==0.1.6
+python -m pip install gin-config==0.5.0
+python -m pip install tensorflow==2.13.1
+python -m pip install tf-agents==0.17.0
+python -m pip install scipy==1.10.1
+python -m pip install joblib==1.4.2
+python -m pip install torch==2.3.0
 python -m pip install omegaconf==2.0
 python -m pip install hydra-core==1.1.0
 python -m pip install mbrl==v0.1.4

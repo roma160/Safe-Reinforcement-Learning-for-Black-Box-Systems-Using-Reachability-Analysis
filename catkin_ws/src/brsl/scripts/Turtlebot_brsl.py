@@ -31,11 +31,8 @@ from env_wrappers import TFEnv
 from tf_agents.policies.policy_saver import PolicySaver
 from SafetyLayer import SafetyLayer
 import numpy as np 
-from tensorboardX import SummaryWriter
 import helper
 ####################################mbrl#####################################
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import omegaconf
