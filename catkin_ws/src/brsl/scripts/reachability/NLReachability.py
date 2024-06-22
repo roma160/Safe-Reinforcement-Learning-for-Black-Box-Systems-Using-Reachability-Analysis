@@ -68,7 +68,6 @@ class NLReachability:
         self.options.params["tensorOrder"] = 2
         self.options.params["errorOrder"] = 5
 
-        # helper.start_debug()
         self.u = np.load(os.path.join(path, 'uclean.npy'), allow_pickle=True)
         self.x_meas_vec_0 = np.load(os.path.join(path, 'X0_clean.npy'), allow_pickle=True)
         self.x_meas_vec_1 = np.load(os.path.join(path, 'X1clean.npy'), allow_pickle=True)

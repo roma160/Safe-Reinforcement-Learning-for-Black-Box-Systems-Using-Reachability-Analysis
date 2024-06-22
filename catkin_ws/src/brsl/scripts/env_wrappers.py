@@ -18,6 +18,7 @@ from tf_agents.trajectories.time_step import StepType as tfStepType
 from tf_agents.environments import py_environment
 import tf_agents
 from brsl_msgs.srv import *
+import helper
 
 diagonal_dis = math.sqrt(2) * (3.6 + 3.8)
 #goal_model_dir = os.path.join(os.path.split(os.path.realpath(__file__))[0], '..', '..', 'turtlebot3_simulations',
@@ -47,8 +48,8 @@ class TFEnv(py_environment.PyEnvironment):
         self.observation_length = len(resp.maximum)
         self._observation_spec = tf_agents.specs.BoundedArraySpec(shape=(len(resp.maximum),), dtype=np.float32, name="observation", 
                                                                     minimum=resp.minimum, maximum=resp.maximum)
-
-
+        
+        helper.start_debug()
         rospy.wait_for_service("/environment/EnvReset")
         service_proxy = rospy.ServiceProxy('/environment/EnvReset', EnvReset)
         msg = EnvResetRequest()
