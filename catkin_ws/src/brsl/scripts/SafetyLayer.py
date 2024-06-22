@@ -1,9 +1,11 @@
+import os
 import numpy as np
 from reachability.NLReachability import NLReachability
 from multiprocessing import Pool
 from helper import check_zono_intersection
 import math
 from reachability.Zonotope import Zonotope
+import helper
 
 class Pose:
     """
@@ -71,7 +73,7 @@ class SafetyLayer():
 
     def __init__(self, env = "tb"):
         self.env = env
-        self.nonlinear_reachability = NLReachability("/home/mahmoud/exp/Turtlebot/BRSL/Data/")
+        self.nonlinear_reachability = NLReachability(os.path.join(helper.get_root_path(), "data"))
         self.pool = Pool()
 
         self.old_plan = []
@@ -334,4 +336,7 @@ class SafetyLayer():
             plan = np.vstack((plan, np.array([[0] * 8])))
             self.old_plan = plan
             return True, action
-                    
+
+
+if __name__ == "__main__":
+    print(os.path.join(helper.get_root_path(), "data"))

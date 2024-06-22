@@ -32,6 +32,7 @@ from tf_agents.policies.policy_saver import PolicySaver
 from SafetyLayer import SafetyLayer
 import numpy as np 
 from tensorboardX import SummaryWriter
+import helper
 ####################################mbrl#####################################
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -376,7 +377,7 @@ def train_eval(
 		restore_checkpoint = False
 		restore_checkpoint_step = 410000
 		if(restore_checkpoint):
-			checkpoint_dir = '/home/mahmoud/turtlebot/td3_policy_%d' % restore_checkpoint_step
+			checkpoint_dir = os.path.join(helper.get_root_path(), f"td3_policy_{restore_checkpoint_step}")
 
 			my_policy = tf_agent.collect_policy
 			saver = PolicySaver(my_policy, batch_size=None)
@@ -526,11 +527,11 @@ def train_eval(
 				timed_at_step = global_step.numpy()
 				time_acc = 0
 				if(collect_reachability_data):
-					np.save("/home/mahmoud/exp/Turtlebot/BRSL/Data/reachability_states", reachability_states)
-					np.save("/home/mahmoud/exp/Turtlebot/BRSL/Data/reachability_actions", reachability_actions)
+					np.save(os.path.join(helper.get_root_path(), "data/reachability_states"), reachability_states)
+					np.save(os.path.join(helper.get_root_path(), "data/reachability_actions"), reachability_actions)
 		
 			if (global_step.numpy() % 10000 == 0):
-				checkpoint_dir = '/home/mahmoud/turtlebot/td3_policy_%d' % global_step
+				checkpoint_dir = os.path.join(helper.get_root_path(), f"td3_policy_{restore_checkpoint_step}")
 				my_policy = tf_agent.collect_policy
 				saver = PolicySaver(my_policy, batch_size=None)
 				saver.save(checkpoint_dir + "/policy_saver")

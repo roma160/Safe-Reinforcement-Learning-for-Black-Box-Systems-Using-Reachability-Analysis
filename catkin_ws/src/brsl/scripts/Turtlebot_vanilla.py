@@ -60,7 +60,8 @@ import mbrl.types
 from tf_agents.trajectories import TimeStep
 from tf_agents.trajectories import PolicyStep
 import joblib
-from utils.MetricsCollector import MetricsCollector 
+from utils.MetricsCollector import MetricsCollector
+import helper
 #############################################################################
 
 flags.DEFINE_string('root_dir', os.getenv('TEST_UNDECLARED_OUTPUTS_DIR'),
@@ -257,7 +258,7 @@ def train_eval(
     restore_checkpoint = False
     restore_checkpoint_step = 410000
     if(restore_checkpoint):
-      checkpoint_dir = '/home/mahmoud/td3/td3_policy_%d' % restore_checkpoint_step
+      checkpoint_dir = os.path.join(helper.get_root_path(), f"td3_policy_{restore_checkpoint_step}")
 
       my_policy = tf_agent.collect_policy
       saver = PolicySaver(my_policy, batch_size=None)
@@ -377,11 +378,11 @@ def train_eval(
         timed_at_step = global_step.numpy()
         time_acc = 0
         if(collect_reachability_data):
-          np.save("/home/mahmoud/exp/exp2/reachability_states", reachability_states)
-          np.save("/home/mahmoud/exp/exp2/reachability_actions", reachability_actions)
+          np.save(os.path.join(helper.get_root_path(), "data/reachability_states"), reachability_states)
+          np.save(os.path.join(helper.get_root_path(), "data/reachability_actions"), reachability_actions)
     
       if (global_step.numpy() % 10000 == 0):
-        checkpoint_dir = '/home/mahmoud/td3/td3_policy_%d' % global_step
+        checkpoint_dir = os.path.join(helper.get_root_path(), f"td3_policy_{restore_checkpoint_step}")
         my_policy = tf_agent.collect_policy
         saver = PolicySaver(my_policy, batch_size=None)
         saver.save(checkpoint_dir + "/policy_saver")

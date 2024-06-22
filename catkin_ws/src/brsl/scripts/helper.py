@@ -7,6 +7,11 @@ from reachability.Zonotope import Zonotope
 import math
 import matplotlib.pyplot as plt
 import time
+import os
+
+def get_root_path():
+    this_file_dir = os.path.dirname(os.path.realpath(__file__))
+    return os.path.realpath(os.path.join(this_file_dir, "../../../../"))
 
 def check_zono_intersection(_input):
     #print("Hi")
@@ -106,3 +111,5 @@ def check_zono_intersection(_input):
         #print("Returning")
         return True, delta_center
     
+if __name__ == '__main__':
+    print(get_root_path())
