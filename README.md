@@ -27,7 +27,6 @@ python -m pip install torch==2.3.0
 python -m pip install omegaconf==2.0
 python -m pip install hydra-core==1.1.0
 python -m pip install mbrl==v0.1.4
-python -m pip install tensorrt==10.1.0
 ```
 
 If you want to utilize gpu for your training, you should install tf-gpu and torch cuda instead.
