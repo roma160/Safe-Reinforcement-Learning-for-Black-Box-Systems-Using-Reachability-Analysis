@@ -40,11 +40,8 @@ from tf_agents.trajectories import trajectory
 from env_wrappers import TFEnv 
 from tf_agents.policies.policy_saver import PolicySaver
 #from safety_layer import safety_layer
-import numpy as np 
-from tensorboardX import SummaryWriter
+import numpy as np
 ####################################mbrl#####################################
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import omegaconf
