@@ -422,7 +422,7 @@ class TbotEnv(py_environment.PyEnvironment):
         return self.position
         
     def _reset(self, req):
-        print("Someone called a reset, and I received this request")
+        # Execution goes to here, but doesn't exit for some reason
         self._state = self.Greset()
         self._episode_ended = False
         response = EnvResetResponse()
