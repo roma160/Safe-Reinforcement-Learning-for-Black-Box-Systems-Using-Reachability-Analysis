@@ -19,6 +19,7 @@ from tf_agents.trajectories.time_step import StepType as tfStepType
 from tf_agents.environments import py_environment
 import tf_agents
 from brsl_msgs.srv import *
+import helper
 
 diagonal_dis = math.sqrt(2) * (3.6 + 3.8)
 goal_model_dir = os.path.join(os.path.split(os.path.realpath(__file__))[0], '..', '..', 'turtlebot3_simulations',
@@ -394,6 +395,7 @@ class TbotEnv(py_environment.PyEnvironment):
         # Reset the env 
         self.clear_goal_obstacles()
 
+        helper.start_debug()
         rospy.wait_for_service('gazebo/reset_simulation')
         try:
             self.reset_proxy()

@@ -49,7 +49,6 @@ class TFEnv(py_environment.PyEnvironment):
         self._observation_spec = tf_agents.specs.BoundedArraySpec(shape=(len(resp.maximum),), dtype=np.float32, name="observation", 
                                                                     minimum=resp.minimum, maximum=resp.maximum)
         
-        helper.start_debug()
         rospy.wait_for_service("/environment/EnvReset")
         service_proxy = rospy.ServiceProxy('/environment/EnvReset', EnvReset)
         msg = EnvResetRequest()
