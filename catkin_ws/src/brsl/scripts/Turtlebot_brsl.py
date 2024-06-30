@@ -19,10 +19,7 @@ from tf_agents.agents.ddpg import actor_network
 from tf_agents.agents.ddpg import critic_network
 from tf_agents.agents.td3 import td3_agent
 from tf_agents.drivers import dynamic_step_driver
-#from tf_agents.environments import suite_mujoco
-from tf_agents.environments import suite_gym
 from tf_agents.environments import tf_py_environment
-from tf_agents.eval import metric_utils
 from tf_agents.metrics import tf_metrics
 from tf_agents.replay_buffers import tf_uniform_replay_buffer
 from tf_agents.utils import common
@@ -31,19 +28,14 @@ from env_wrappers import TFEnv
 from tf_agents.policies.policy_saver import PolicySaver
 from SafetyLayer import SafetyLayer
 import numpy as np 
-from tensorboardX import SummaryWriter
 import helper
 ####################################mbrl#####################################
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import omegaconf
 
 import mbrl.models as models
-import mbrl.planning as planning
 import mbrl.util.common as common_util
-import mbrl.util as util
 import mbrl.types
 from tf_agents.trajectories import TimeStep
 from tf_agents.trajectories import PolicyStep
@@ -64,42 +56,32 @@ FLAGS = flags.FLAGS
 @gin.configurable
 def train_eval(
 	root_dir,
-	env_name='Turtlebot',
 	num_iterations=2000000,
 	actor_fc_layers=(512, 256, 64),
 	critic_obs_fc_layers=(512,),
 	critic_action_fc_layers=None,
 	critic_joint_fc_layers=(300,),
-	# Params for collect
 	initial_collect_steps=2000,
 	collect_steps_per_iteration=1,
 	replay_buffer_capacity=100000,
-	exploration_noise_std=0.1,
-	# Params for target update
 	target_update_tau=0.05,
 	target_update_period=5,
-	# Params for train
 	train_steps_per_iteration=1,
 	batch_size=64,
 	actor_update_period=2,
 	actor_learning_rate=1e-4,
 	critic_learning_rate=1e-3,
-	dqda_clipping=None,
 	td_errors_loss_fn=tf.compat.v1.losses.huber_loss,
 	gamma=0.995,
 	reward_scale_factor=1.0,
 	gradient_clipping=None,
 	use_tf_functions=True,
-	# Params for eval
 	num_eval_episodes=10,
-	eval_interval=1000,
-	# Params for checkpoints, summaries, and logging
 	log_interval=1000,
 	summary_interval=1000,
 	summaries_flush_secs=10,
 	debug_summaries=False,
 	summarize_grads_and_vars=False,
-	eval_metrics_callback=None
 ):
 
 	rospy.init_node('BRSL_TB')
@@ -114,24 +96,11 @@ def train_eval(
 	train_summary_writer = tf.compat.v2.summary.create_file_writer(
 			train_dir, flush_millis=summaries_flush_secs * 1000)
 	train_summary_writer.set_as_default()
-
-	#writer = SummaryWriter(safety_dir)
 	metrics_collector = MetricsCollector(safety_dir)
-
-	eval_summary_writer = tf.compat.v2.summary.create_file_writer(
-			eval_dir, flush_millis=summaries_flush_secs * 1000)
-	eval_metrics = [
-			tf_metrics.AverageReturnMetric(buffer_size=num_eval_episodes),
-			tf_metrics.AverageEpisodeLengthMetric(buffer_size=num_eval_episodes)
-	]
-
 	global_step = tf.compat.v1.train.get_or_create_global_step()
 	with tf.compat.v2.summary.record_if(
 			lambda: tf.math.equal(global_step % summary_interval, 0)):
-		env_name = 'Turtlebot'
-		#env = suite_gym.load(env_name)
 		tf_env = tf_py_environment.TFPyEnvironment(TFEnv)#tf_py_environment.TFPyEnvironment(suite_gym.load(env_name))
-		eval_tf_env = tf_py_environment.TFPyEnvironment(TFEnv)#tf_py_environment.TFPyEnvironment(suite_gym.load(env_name))
 
 		actor_net = actor_network.ActorNetwork(
 				tf_env.time_step_spec().observation,
@@ -165,10 +134,8 @@ def train_eval(
 				target_update_tau=target_update_tau,
 				target_update_period=target_update_period,
 				actor_update_period=actor_update_period,
-				#dqda_clipping=dqda_clipping,
 				td_errors_loss_fn=td_errors_loss_fn,
 				target_policy_noise = noise,
-				#target_policy_noise_clip = 0.2,
 				gamma=gamma,
 				reward_scale_factor=reward_scale_factor,
 				gradient_clipping=gradient_clipping,
@@ -185,7 +152,6 @@ def train_eval(
 				tf_metrics.AverageEpisodeLengthMetric(),
 		]
 
-		eval_policy = tf_agent.policy
 		collect_policy = tf_agent.collect_policy
 
 		replay_buffer = tf_uniform_replay_buffer.TFUniformReplayBuffer(
@@ -208,10 +174,6 @@ def train_eval(
 			collect_driver.run = common.function(collect_driver.run)
 			tf_agent.train = common.function(tf_agent.train)
 
-		# Collect initial replay data.
-		print(
-				'Initializing replay buffer by collecting experience for {} steps with '
-				'a random policy.'.format(initial_collect_steps))
 		initial_collect_driver.run()
 
 
@@ -220,8 +182,6 @@ def train_eval(
 
 		timed_at_step = global_step.numpy()
 		time_acc = 0
-
-		# Dataset generates trajectories with shape [Bx2x...]
 		dataset = replay_buffer.as_dataset(
 				num_parallel_calls=3,
 				sample_batch_size=batch_size,
@@ -238,13 +198,10 @@ def train_eval(
 		collect_reachability_data = True
 		
 		if(dream):
-			####################################mbrl#####################################
 			mbrl_losses = []
 			mbrl_val_losses = []
 			device = 'cuda:0' if torch.cuda.is_available() else 'cpu'  
 			seed = 0
-			#env = cartpole_env.CartPoleEnv()
-			#env.seed(seed)
 			trial_length = 500
 			num_trials = 10
 			ensemble_size = 1
@@ -255,7 +212,6 @@ def train_eval(
 			obs_shape = tf_env.observation_spec().shape#env.observation_space.shape
 			act_shape = tf_env.action_spec().shape#env.action_space.shape
 			cfg_dict = {
-				# dynamics model configuration
 				"dynamics_model": {
 					"model": {
 						"_target_": "mbrl.models.GaussianMLP",
@@ -270,14 +226,12 @@ def train_eval(
 						"propagation_method": "fixed_model"
 					}
 				},
-				# options for training the dynamics model
 				"algorithm": {
 					"learned_rewards": False,
 					"target_is_delta": True,
 					"normalize": True,
 					"dataset_size": 250
 				},
-				# these are experiment specific options
 				"overrides": {
 					"trial_length": trial_length,
 					"num_steps": num_trials * trial_length,
@@ -287,11 +241,8 @@ def train_eval(
 			}
 			cfg = omegaconf.OmegaConf.create(cfg_dict)
 
-
-			# Create a 1-D dynamics model for this environment
 			dynamics_model = common_util.create_one_dim_tr_model(cfg, obs_shape, act_shape)
 			mbrl_replay_buffer = common_util.create_replay_buffer(cfg, obs_shape, act_shape, rng=rng)
-			state = tf_env._reset()
 
 			time_step = tf_env.current_time_step()
 			policy_state = collect_policy.get_initial_state(tf_env.batch_size)
@@ -362,19 +313,12 @@ def train_eval(
 					mbrl_val_losses.append(val_scores[0])
 
 			#############################################################################
-			print("*"*80)
-			print("# samples stored", mbrl_replay_buffer.num_stored)
-			print("*"*80)
-
 			tf_env.reset()
 			time_step = None
 			policy_state = None
-		else:
-			print("Dreaming is not used")
 		reachability_actions = []
 		reachability_states = []
 
-		print("Start Training...")
 		restore_checkpoint = False
 		restore_checkpoint_step = 410000
 		if(restore_checkpoint):
@@ -406,9 +350,7 @@ def train_eval(
 
 		moving = [True] * 20
 		for _ in range(num_iterations):
-			#rate.sleep()
 			start_time = time.time()
-			times = []
 			next_action = None
 
 			if time_step is None:
@@ -428,8 +370,6 @@ def train_eval(
 				mbrl_action_step = PolicyStep(action = tf.identity(action_step.action))
 				plan = [action_step.action.numpy().squeeze().tolist()]
 
-				# Here the actual dreaming takes place
-				# The result of the dreaming is the plan: list
 				for i in range(3):
 					_current_obs = torch.from_numpy(mbrl_time_step.observation.numpy().astype(np.float64)).to(device)
 					actions = torch.from_numpy(mbrl_action_step.action.numpy().astype(np.float64)).to(device)
@@ -460,7 +400,6 @@ def train_eval(
 				plan_holder = np.zeros((10, 8)).astype(np.float32)
 				plan_holder[:4, :2] = plan 
 
-				# Here we send the plan to the safety layer, to the next SAFE action
 				res, next_action = sl.enforce_safety(reachability_state, plan_holder, readings)
 				plan_t = time.time() - start_t
 				moving.append(res)
@@ -471,12 +410,10 @@ def train_eval(
 				random_a = np.array([[0, 0]], dtype = np.float32)
 				random_a[0][0] = np.random.uniform(0, .25)
 				random_a[0][1] = np.random.uniform(-.5, .5)
-				#random_a[0][2] = np.random.uniform(-.5, .5)
 				action_step = action_step._replace(action = random_a)
 				reachability_states.append(np.array(list(tf_env.envs[0].get_odom().odom) + [list(time_step.is_last())]))
 
 				reachability_actions.append(action_step.action)
-			#############################################################################################################################
 
 			action_step = action_step._replace(action = np.copy(next_action).reshape((1, 2)))
 
@@ -502,7 +439,6 @@ def train_eval(
 				time_step, next_time_step, policy_state = tf.nest.map_structure(
 						tf.identity, (time_step, next_time_step, policy_state))
 
-			#counter += tf.cast(traj.is_boundary(), dtype=tf.int32)
 			time_step = next_time_step
 
 
@@ -569,4 +505,3 @@ if __name__ == '__main__':
 	FLAGS.root_dir = "/home/mahmoud/turtlebot"
 	flags.mark_flag_as_required('root_dir')
 	app.run(main)
-	#main()

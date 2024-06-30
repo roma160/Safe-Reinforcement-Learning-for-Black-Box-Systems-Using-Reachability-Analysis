@@ -3,8 +3,6 @@ import os
 import rospy
 import numpy as np
 import math
-from math import pi
-import random
 import time
 import glob
 from geometry_msgs.msg import Twist, Point, Pose
@@ -14,8 +12,6 @@ from sensor_msgs.msg import Imu
 from std_srvs.srv import Empty
 from rosgraph_msgs.msg import Clock
 from gazebo_msgs.srv import SpawnModel, DeleteModel
-from tf_agents.trajectories.time_step import TimeStep as tfTimeStep
-from tf_agents.trajectories.time_step import StepType as tfStepType
 from tf_agents.environments import py_environment
 import tf_agents
 from brsl_msgs.srv import *
@@ -48,7 +44,6 @@ class TbotEnv(py_environment.PyEnvironment):
         self.sub_odom = rospy.Subscriber('odom', Odometry, self.getOdometry)
         self.sub_clock = rospy.Subscriber('clock', Clock, self.get_gtime)
         self.sub_scan  = rospy.Subscriber('scan', LaserScan, self.get_scan)
-        #self.sub_imu  = rospy.Subscriber('imu', Imu, self.getImu)
         self.reset_proxy = rospy.ServiceProxy('gazebo/reset_simulation', Empty)
         self.unpause_proxy = rospy.ServiceProxy('gazebo/unpause_physics', Empty)
         self.pause_proxy = rospy.ServiceProxy('gazebo/pause_physics', Empty)
@@ -71,14 +66,6 @@ class TbotEnv(py_environment.PyEnvironment):
         self.cylinders_path = glob.glob(os.path.join(os.path.split(os.path.realpath(__file__))[0], "Turtlebot_Models", "cylinder*"))
         self.boxes_path = glob.glob(os.path.join(os.path.split(os.path.realpath(__file__))[0], "Turtlebot_Models", "Box*"))
         self.walls_poses = np.load(os.path.join(os.path.split(os.path.realpath(__file__))[0], "Turtlebot_Models", "Turtlebot_V1.npy"))
-        GetActionSpec_srv = rospy.Service('~GetActionSpec', GetActionSpec, self.action_spec)
-        GetObservationSpec_srv = rospy.Service('~GetObservationSpec', GetObservationSpec, self.observation_spec)
-        EnvReset_srv = rospy.Service('~EnvReset', EnvReset, self._reset)
-        EnvStep_srv = rospy.Service('~EnvStep', EnvStep, self._step)
-        GetOdom_srv = rospy.Service('~GetOdom', GetOdom, self.GetOdom)
-        #print(self.cylinders_path)
-        #print(self.boxes_path)
-        #print("*"*80)
         if is_training:
             self.threshold_arrive = 0.5
         else:
@@ -127,7 +114,6 @@ class TbotEnv(py_environment.PyEnvironment):
         self.position = odom.pose.pose.position
         self.twist_state = odom.twist.twist.linear
         self.twist_ang = odom.twist.twist.angular
-        #self.orientation 
         self.orientation = odom.pose.pose.orientation
         q_x, q_y, q_z, q_w = self.orientation.x, self.orientation.y, self.orientation.z, self.orientation.w
         yaw = round(math.degrees(math.atan2(2 * (q_x * q_y + q_w * q_z), 1 - 2 * (q_y * q_y + q_z * q_z))))
@@ -192,7 +178,6 @@ class TbotEnv(py_environment.PyEnvironment):
 
         current_distance = math.hypot(self.goal_position.position.x - self.position.x, self.goal_position.position.y - self.position.y)
         if current_distance <= self.threshold_arrive:
-            # done = True
             arrive = True
 
         return scan_range, current_distance, yaw, rel_theta, diff_angle, self.orientation.z, self.orientation.w, \
@@ -201,7 +186,6 @@ class TbotEnv(py_environment.PyEnvironment):
 
     def spawn_object(self, object_path, name, pose):
         rospy.wait_for_service('/gazebo/spawn_sdf_model')
-        #print(name)
         try:
             object_urdf = open(object_path, "r").read()
             target = SpawnModel
@@ -225,8 +209,6 @@ class TbotEnv(py_environment.PyEnvironment):
             target = SpawnModel
             target.model_name = "goal" 
             target.model_xml = goal_urdf
-
-            goal_position_valid = False
 
             while(True):
                 pose = np.random.uniform(-5, 5, (2))
@@ -295,7 +277,6 @@ class TbotEnv(py_environment.PyEnvironment):
         distance_rate = (self.past_distance - current_distance)
 
         reward = 20.*distance_rate 
-        #reward = 10/(current_distance + 0.1)
         self.past_distance = current_distance
 
         if done:
@@ -307,7 +288,6 @@ class TbotEnv(py_environment.PyEnvironment):
             reward = 100
             self.pub_cmd_vel.publish(Twist())
 
-            #rospy.wait_for_service('/gazebo/unpause_physics')
             self.goal_distance = self.getGoalDistace()
             arrive = False
 
@@ -328,12 +308,6 @@ class TbotEnv(py_environment.PyEnvironment):
 
         while(np.abs(self.gtime - start_t) < 100):
             continue
-        #data = None
-        #while data is None:
-        #    try:
-        #        data = rospy.wait_for_message('scan', LaserScan, timeout=5)
-        #    except:
-        #        pass
 
         self.pause_proxy()
         state, rel_dis, yaw, rel_theta, diff_angle, orientation_z, orientation_w, twist_state_x, twist_ang_z, done, arrive = self.getState(self.scan)
@@ -355,7 +329,6 @@ class TbotEnv(py_environment.PyEnvironment):
 
         vel_cmd = Twist()
         vel_cmd.linear.x = linear_vel
-        #vel_cmd.linear.y = ang_vel
         vel_cmd.angular.z = ang_vel
 
         self.pub_cmd_vel.publish(vel_cmd)
@@ -370,9 +343,6 @@ class TbotEnv(py_environment.PyEnvironment):
         state, rel_dis, yaw, rel_theta, diff_angle, orientation_z, orientation_w, twist_state_x, twist_ang_z, done, arrive = self.getState(data)
         state = [i / 3.5 for i in state]
 
-        #for pa in past_action:
-        #    state.append(pa)
-
         state = state + [rel_dis / diagonal_dis, yaw / 360, rel_theta / 360, diff_angle / 180, orientation_z/6.29,
                          orientation_w/6.29, twist_state_x/6.29, twist_ang_z/6.29]
         """
@@ -386,12 +356,10 @@ class TbotEnv(py_environment.PyEnvironment):
 
 
         times.append(time.time() - start_t)
-        #print("Step took {}".format(times))
         return state, reward, done, arrive#np.asarray(state, dtype=np.float32).reshape((14,)), reward, done, arrive
 
 
     def Greset(self):
-        # Reset the env 
         self.clear_goal_obstacles()
 
         rospy.wait_for_service('gazebo/reset_simulation')
@@ -401,12 +369,7 @@ class TbotEnv(py_environment.PyEnvironment):
             print("gazebo/reset_simulation service call failed")
 
         self.unpause_proxy()
-        # Build the targetz
-
         self.spawn_goal_obstacles()
-        #rospy.wait_for_service('/gazebo/unpause_physics')
-        
-
         self.goal_distance = self.getGoalDistace()
         state, rel_dis, yaw, rel_theta, diff_angle, orientation_z, orientation_w, twist_state_x, twist_ang_z, done, arrive = self.getState(self.scan)
         state = [i / 3.5 for i in state]
@@ -430,17 +393,12 @@ class TbotEnv(py_environment.PyEnvironment):
 
 
     def _step(self, req):
-        #print("*"*80)
-        #print("Entered Step {}".format(req.action))
         self.one_round_step +=1
-        # done flag happens when the agent hits an obstacle. That is it has failed
-        # arrive happens when the agent arrives successfully at the goal location
         state, reward, done, arrive = self.Gstep(req.action)
         response = EnvStepResponse()
 
         if arrive or done or self.one_round_step >= 4000:
             self.one_round_step = 0
-            #print("done or arrive")
             if(arrive):
                 response.collision = False
                 response.arrived = True
@@ -471,7 +429,6 @@ class TbotEnv(py_environment.PyEnvironment):
 
 def main():
     rospy.init_node("environment")
-    turtlebot_environment = TbotEnv()
     print("Spinning rospy")
     rospy.spin()
 
