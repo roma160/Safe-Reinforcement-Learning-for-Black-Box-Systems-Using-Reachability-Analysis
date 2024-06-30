@@ -760,8 +760,9 @@ class KerasSafetyRNN(KerasPilot):
         
         next_move = wrapped_run(self, img_arr, other_arr)
         self.safety_data.update(next_move)
-        while self.safety_data.is_crashed():
-            self.safety_data.recover()
+        if self.safety_data.is_crashed():
+            return self.safety_data.recover()
+        
             
         return next_move
 
