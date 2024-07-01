@@ -35,6 +35,8 @@ from tensorflow.keras.backend import concatenate
 from tensorflow.keras.models import Model
 from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
 
+from safety import *
+
 ONE_BYTE_SCALE = 1.0 / 255.0
 
 # type of x
@@ -684,26 +686,12 @@ class KerasLSTM(KerasPilot):
         return f'{super().__str__()}-L:{self.seq_length}'
     
 class KerasSafetyRNN(KerasPilot):
-    class SafetyData(): # TODO ROMAN I GOT A JOB FOR YOU
-        #TODO run the maping and updating of current location
-        def __init__(self):
-            pass
-        def update(self, move): # move = tuple of (angle, throttle)
-            # TODO: update the current location
-            pass
-        def is_crashed(self) -> bool:
-            # TODO: check if we crashed
-            pass
-        def recover(self):
-            # TODO: recover from crash
-            pass
-        
     def __init__(self,
                  interpreter: Interpreter = KerasInterpreter(),
                  input_shape: Tuple[int, ...] = (120, 160, 3),
                  seq_length=3,
                  num_outputs=2):
-        self.safety_data = self.SafetyData()
+        self.safety_data = SafetyData()
         self.num_outputs = num_outputs
         self.seq_length = seq_length
         super().__init__(interpreter, input_shape)
