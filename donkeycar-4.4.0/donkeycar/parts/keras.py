@@ -688,13 +688,13 @@ class KerasSafetyRNN(KerasPilot):
         #TODO run the maping and updating of current location
         def __init__(self):
             pass
-        def update(move): # move = tuple of (angle, throttle)
+        def update(self, move): # move = tuple of (angle, throttle)
             # TODO: update the current location
             pass
-        def is_crashed() -> bool:
+        def is_crashed(self) -> bool:
             # TODO: check if we crashed
             pass
-        def recover():
+        def recover(self):
             # TODO: recover from crash
             pass
         
