@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 from math import ceil, floor, sqrt, cos, sin, radians
+import random
 
 path = r'mycar\foo.csv'
 
@@ -22,7 +23,6 @@ stepSideSize = 2.1
 angleSide = 3.2
 stepSideY = 2.09673
 stepSideX = 0.11723
-
 
 class SafetyData(): # TODO ROMAN I GOT A JOB FOR YOU
     #TODO run the maping and updating of current location
@@ -65,9 +65,13 @@ class SafetyData(): # TODO ROMAN I GOT A JOB FOR YOU
         
     def is_crashed(self) -> bool:
         return self.check_collisions(self.carX, self.carY, carCircleHitboxRadius)
-    def recover(self):
-        # TODO: recover from crash
-        pass
+    def recover(self, move):
+        angle, throttle = move
+        self.update((-angle, -throttle))
+        
+        angle = random.choice([-1, 0, 1])
+        self.update((angle, -throttle))
+        return (angle, -throttle)
     
     
     def check_collisions(self, x: float, y: float, r: float) -> bool:
