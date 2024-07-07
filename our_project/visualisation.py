@@ -13,7 +13,7 @@ import socket
 from common_state import DonkeyState
 
 
-state = DonkeyState(0, 0, 0)
+states = [DonkeyState(0, 0, 0, 0, 0)]
 
 class Server():
 	def __init__(self):
@@ -33,14 +33,14 @@ class Server():
 		self.thread.join()
 
 	def _loop(self):
-		global state
+		global states
 		print("Server is running", self.running)
 		while self.running:
 			try:
 				message, address = self.server_socket.recvfrom(1024)
 			except socket.timeout:
 				continue
-			state = DonkeyState.load(message)
+			states.append(DonkeyState.load(message))
 
 # https://github.com/pyimgui/pyimgui/blob/723022d87de8040d1c4a66f53288dcfd7d2274d3/doc/examples/plots.py#L67C1-L91C18
 def impl_glfw_init():
@@ -126,6 +126,7 @@ def loop():
 					imgui.get_color_u32_rgba(1.0, 1.0, 1.0, 1.0)
 				)
 	
+	state = states[-1]
 	draw_list.add_circle(
 		cx + (state.x) * dx / pixel_size, cy + height - (state.y) * dy / pixel_size,
 		car_radius, imgui.get_color_u32_rgba(1.0, 0.0, 0.0, 1.0)
@@ -140,8 +141,10 @@ def loop():
 	imgui.end()
 
 	imgui.begin("State view")
-	imgui.text(f"X: {state.x} Y: {state.y} Angle: {state.angle}")
-	imgui.text(f"Render position: {cx + (state.x) * dx / pixel_size}, {cy + height - (state.y) * dy / pixel_size}")
+	for state in reversed(states):
+		imgui.text(f"X: {state.x} Y: {state.y} Angle: {state.angle} " + ("I AM REVERSING" if state.recovery else "not reversing"))
+		imgui.text(f"Render position: {cx + (state.x) * dx / pixel_size}, {cy + height - (state.y) * dy / pixel_size}\n")
+		imgui.text("")
 	imgui.end()
 
 if __name__ == "__main__":
