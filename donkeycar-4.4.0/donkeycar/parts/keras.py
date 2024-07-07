@@ -35,7 +35,11 @@ from tensorflow.keras.backend import concatenate
 from tensorflow.keras.models import Model
 from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
 
+from common_state import DonkeyState
+import socket
+    
 from safety import *
+
 
 ONE_BYTE_SCALE = 1.0 / 255.0
 
@@ -684,8 +688,10 @@ class KerasLSTM(KerasPilot):
     def __str__(self) -> str:
         """ For printing model initialisation """
         return f'{super().__str__()}-L:{self.seq_length}'
-    
+
+
 class KerasSafetyRNN(KerasPilot):
+
     def __init__(self,
                  interpreter: Interpreter = KerasInterpreter(),
                  input_shape: Tuple[int, ...] = (120, 160, 3),
@@ -697,7 +703,10 @@ class KerasSafetyRNN(KerasPilot):
         super().__init__(interpreter, input_shape)
         self.img_seq = deque()
         self.optimizer = "rmsprop"
-    
+        
+        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.addr = ("192.168.210.148", 12000)
+
     def seq_size(self) -> int:
         return self.seq_length
 
@@ -731,7 +740,7 @@ class KerasSafetyRNN(KerasPilot):
         throttle = records[-1].underlying['user/throttle']
         return {'model_outputs': [angle, throttle]}
 
-    def run(self, img_arr, other_arr=None):
+    def run(self, img_arr, *other_arr):
         def wrapped_run(self, img_arr, other_arr=None):
             if img_arr.shape[2] == 3 and self.input_shape[2] == 1:
                 img_arr = dk.utils.rgb2gray(img_arr)
@@ -745,13 +754,52 @@ class KerasSafetyRNN(KerasPilot):
             img_arr = np.array(self.img_seq).reshape(new_shape)
             img_arr_norm = normalize_image(img_arr)
             return self.inference(img_arr_norm, other_arr)
+
+        print(other_arr)
+        print("x", self.safety_data.carX, self.safety_data.matrixCarX)
+        print("y", self.safety_data.carY, self.safety_data.matrixCarY)
+        print("heading", self.safety_data.heading)
+        print("recovery", self.safety_data.recovery)
+        print("last step", self.safety_data.last_step)
+        self.client_socket.sendto(bytes(
+            DonkeyState(
+                self.safety_data.carX,
+                self.safety_data.carY,
+                self.safety_data.heading,
+                0, 0
+            )
+        ), self.addr)
         
-        next_move = wrapped_run(self, img_arr, other_arr)
-        self.safety_data.update(next_move)
-        if self.safety_data.is_crashed():
-            return self.safety_data.recover(next_move)
         
+        if self.safety_data.recovery > 170:
+            print("before recovery stopped!!!!!!!!!!!!!!!!!!!!")
+            self.safety_data.recovery -= 1
+            return (0,0)
+        elif self.safety_data.recovery > 140:
+            self.safety_data.recovery -= 1
             
+            if self.safety_data.is_crashed():
+                self.safety_data.recovery = 0
+                return wrapped_run(self, img_arr)
+            
+            self.safety_data.update(self.safety_data.last_step)
+            return self.safety_data.recover(self.safety_data.last_step)
+        elif self.safety_data.recovery > 0:
+            print("after recovery stopped!!!!!!!!!!!!!!!!!!!!")
+            self.safety_data.recovery -= 1
+            return (0,0)
+            
+        next_move = wrapped_run(self, img_arr)
+        #self.safety_data.update(next_move)    
+
+        
+        #if self.safety_data.is_crashed():
+        #    print("##################################################################################recovering!!!")
+        #    self.safety_data.recovery = 300
+        #    self.safety_data.last_step = next_move
+        #    return self.safety_data.recover(next_move)
+
+
         return next_move
 
     def interpreter_to_output(self, interpreter_out) \
@@ -771,7 +819,6 @@ class KerasSafetyRNN(KerasPilot):
     def __str__(self) -> str:
         """ For printing model initialisation """
         return f'{super().__str__()}-L:{self.seq_length}'
-
 
 
 class Keras3D_CNN(KerasPilot):

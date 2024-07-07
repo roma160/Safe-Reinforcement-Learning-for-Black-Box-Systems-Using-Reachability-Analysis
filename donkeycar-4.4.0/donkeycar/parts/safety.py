@@ -1,26 +1,25 @@
-
 import numpy as np
 import pandas as pd
 from math import ceil, floor, sqrt, cos, sin, radians
 import random
 
-path = r'mycar\foo.csv'
+path = r'car.csv'
 
 size_of_pixel = .5
 unitsPerPixel = 1 / size_of_pixel
 
-initX = 30
-initY = 30
-initHeading = 90
+initX = 207.5
+initY = 13.5
+initHeading = 1.5708
 
-carCircleHitboxRadius = 12.5
+carCircleHitboxRadius = 11
 matrixCarCircleHitboxRadius = int(carCircleHitboxRadius * unitsPerPixel)
 
 
-stepForwardSize = 2.5
+stepForwardSize = 8
 
-stepSideSize = 2.1
-angleSide = 3.2
+stepSideSize = 7
+angleSide = 0.0558505
 stepSideY = 2.09673
 stepSideX = 0.11723
 
@@ -38,38 +37,57 @@ class SafetyData(): # TODO ROMAN I GOT A JOB FOR YOU
         
         #import 0s and 1s from the csv file into a matrix that is 446 in y and QD by x
         self.A = np.loadtxt(path, delimiter=",", dtype=int)
+        
+        self.recovery = 0
+        self.last_step = None
+        self.last_heading = 0
 
 
     def update(self, move): # move = tuple of (angle, throttle)
         angle, throttle = move
         
-        heading_rad = radians(self.heading)
-        deltaX = cos(heading_rad)
-        deltaY = sin(heading_rad)
+        deltaX = cos(self.heading)
+        deltaY = sin(self.heading)
         
         if angle == 0:
             self.carX += deltaX * throttle * stepForwardSize
             self.carY += deltaY * throttle * stepForwardSize
         elif angle != 0:
-            self.carX += deltaX * throttle * stepSideSize
-            self.carY += deltaY * throttle * stepSideSize
+            if self.heading > 1.5708*3.5:
+                self.carX += deltaX * throttle * stepSideSize 
+                self.carY += deltaY * throttle * stepSideSize * 1.3
+            elif self.heading > 1.5708*2.5:
+                self.carX += deltaX * throttle * stepSideSize * 1.3
+                self.carY += deltaY * throttle * stepSideSize 
+            elif self.heading > 1.5708*1.5:
+                self.carX += deltaX * throttle * stepSideSize 
+                self.carY += deltaY * throttle * stepSideSize * 1.3
+            elif self.heading > 1.5708*0.5:
+                self.carX += deltaX * throttle * stepSideSize * 1.3
+                self.carY += deltaY * throttle * stepSideSize
+            else:
+                self.carX += deltaX * throttle * stepSideSize 
+                self.carY += deltaY * throttle * stepSideSize * 1.3
         
         self.matrixX = int(self.carX * unitsPerPixel)
         self.matrixY = int(self.carY * unitsPerPixel)
             
-        self.heading += angle * angleSide
+        self.heading -= angle * angleSide
+        
         if self.heading < 0:
-            self.heading += 360
-        elif self.heading >= 360:
-            self.heading -= 360
+            self.heading += 6.28319
+        elif self.heading >= 6.28319:
+            self.heading -= 6.28319
         
     def is_crashed(self) -> bool:
         return self.check_collisions(self.carX, self.carY, carCircleHitboxRadius)
     def recover(self, move):
         angle, throttle = move
+        throttle = throttle
         self.update((-angle, -throttle))
         
-        angle = random.choice([-1, 0, 1])
+        #angle = random.choice([-1, 0, 1])
+        angle = 0
         self.update((angle, -throttle))
         return (angle, -throttle)
     
