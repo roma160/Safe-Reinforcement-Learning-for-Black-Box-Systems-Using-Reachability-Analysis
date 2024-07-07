@@ -6,6 +6,8 @@ class DonkeyState:
 	x: float
 	y: float
 	angle: float
+	throttle: float
+	recovery: bool
 	
 	def __bytes__(self) -> bytes:
 		return pickle.dumps(self)
