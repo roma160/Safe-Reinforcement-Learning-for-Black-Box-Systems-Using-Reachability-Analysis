@@ -35,6 +35,11 @@ class Server():
 	def _loop(self):
 		global states
 		print("Server is running", self.running)
+
+		#create a point at 10,10:
+		states.append(DonkeyState(200, 15, 0, 0, 0))
+
+
 		while self.running:
 			try:
 				message, address = self.server_socket.recvfrom(1024)
